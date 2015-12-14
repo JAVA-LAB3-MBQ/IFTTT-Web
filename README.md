@@ -1,2 +1,2 @@
 # IFTTT-Web
-NJU CS 2015 Lab3
+NJU CS 2015 Java Lab3
