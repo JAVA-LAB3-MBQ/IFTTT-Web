@@ -18,7 +18,7 @@ public class UserTasksFormBean {
     	return userTasks;
     }
     
-    public void setArrayList<Task> setUserTasks(ArrayList<Task> ts) {
+    public void setUserTasks(ArrayList<Task> ts) {
     	userTasks = ts;
     }
 

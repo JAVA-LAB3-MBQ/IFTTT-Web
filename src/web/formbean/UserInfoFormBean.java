@@ -1,7 +1,7 @@
 package web.formbean;
 
 public class UserInfoFormBean {
-	String userId, userName, userMail, userMailPwd, userWeiboId;
+	String userId, userName, userMail, userMailPwd, userWeiboId, userWeiboPwd;
     int userScore, userLevel, userMoney;
     
     public String getUserId() {
@@ -42,6 +42,14 @@ public class UserInfoFormBean {
     
     public void setUserWeiboId(String wbi) {
     	userWeiboId = wbi;
+    }
+    
+    public String getUserWeiboPwd() {
+    	return userWeiboPwd;
+    }
+    
+    public void setUserWriboPwd(String w) {
+    	userWeiboPwd = w;
     }
     
     public int getUserScore() {
