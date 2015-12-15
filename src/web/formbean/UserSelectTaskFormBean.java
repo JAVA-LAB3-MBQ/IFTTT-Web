@@ -1,5 +1,6 @@
 package web.formbean;
 
+import domain.Task;
 public class UserSelectTaskFormBean {
 	String userId;
     Task selectedTask;

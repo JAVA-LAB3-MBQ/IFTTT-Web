@@ -1,7 +1,7 @@
 package web.formbean;
 
 import java.util.ArrayList;
-
+import domain.Task;
 public class UserTasksFormBean {
 	String userId;
     ArrayList<Task> userTasks;

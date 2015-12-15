@@ -37,10 +37,10 @@ public class EditUserInfoUIServlet extends HttpServlet {
 		
 		// construct the formbean
 		UserInfoFormBean formbean = new UserInfoFormBean();
-		formbean.setUserMail(user.getUserEMailAddr());
-	    formbean.setUserMailPwd(user.getEmailPwd());
-	    formbean.setUserWeiboId(user.getWeiboId());
-	    formbean.setUserWriboPwd(user.getWeiboPwd());
+		formbean.setUserMail(user.getUserEmailAddr());
+	    formbean.setUserMailPwd(user.getUserEmailPwd());
+	    formbean.setUserWeiboId(user.getUserWeiboId());
+	    formbean.setUserWriboPwd(user.getUserWeiboPwd());
 	    formbean.setUserMoney(user.getUserMoney());
 	    request.setAttribute("formbean", formbean);
 	    

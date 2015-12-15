@@ -1,7 +1,8 @@
 package web.formbean;
 
+import domain.Task;
 public class ATaskFormBean {
-	private String userId;
+	private String userId, taskName;
 	private String thisIconPath, thatIconPath;
 	private String listenWbId, listenWbText, listenTimeLen;
 	private String destMailAddr, sendContent;
@@ -15,6 +16,14 @@ public class ATaskFormBean {
     
     public void setUserId(String uId) {
     	userId = uId;
+    }
+    
+    public String getTaskName() {
+    	return taskName;
+    }
+    
+    public void setTaskName(String tn) {
+    	taskName = tn;
     }
     
     public String getThisIconPath() { 

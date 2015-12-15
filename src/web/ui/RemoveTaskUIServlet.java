@@ -32,7 +32,7 @@ public class RemoveTaskUIServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// get userId, selectedTask
 		String userId = request.getParameter("userId");
-		Task selectedTask = request.getParameter("selectedTask");
+		Task selectedTask = (Task)request.getAttribute("selectedTask");
 				
 		// construct formbean
 		UserSelectTaskFormBean formbean = new UserSelectTaskFormBean();

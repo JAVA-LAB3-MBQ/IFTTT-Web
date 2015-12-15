@@ -1,5 +1,8 @@
 package service.impl;
 
+import domain.IfThis;
+import domain.Task;
+import domain.ThenThat;
 import domain.User;
 import service.IUserService;
 import dao.impl.IUserDaoImpl;
@@ -48,5 +51,40 @@ public class IUserServiceImpl implements IUserService {
 	public User loginUser(String userName, String userPwd){
 		IUserDaoImpl t = new IUserDaoImpl();
 		return t.find(userName, userPwd);
+	}
+	
+	public Task removeTask(User user, Task task) {
+		// todo:
+		// remove from database 
+		// remove from user
+		return null;
+	}
+	
+	public User getUser(String uId) {
+	   // todo:
+	   // construct a user
+		User user = new User();
+		
+		return user;
+	}
+	
+	public Task addTask(User user, String tId, String tName, IfThis this_, ThenThat that_) {
+		// todo:
+		// construct a task, 
+		Task task = new Task();
+				
+		// add this_ into database
+	    // add that_ into database
+
+		// add task into user
+		return task;
+	}
+	
+	public Task editTask(User user, Task task, String tName, IfThis this_, ThenThat that_) {
+		// todo:
+		// change task
+		// remove oldThis and oldThat from DataBase
+		// insert new this_ and new that_
+		return task;
 	}
 }

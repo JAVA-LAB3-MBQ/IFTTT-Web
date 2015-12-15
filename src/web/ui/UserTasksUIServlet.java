@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.impl.IUserServiceImpl;
 import web.formbean.UserTasksFormBean;
-
+import web.formbean.*;
+import service.impl.*;
+import domain.*;
 /**
  * Servlet implementation class UserTasksUIServlet
  */

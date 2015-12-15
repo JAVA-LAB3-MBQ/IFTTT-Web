@@ -2,7 +2,7 @@ package web.formbean;
 
 public class UserInfoFormBean {
 	String userId, userName, userMail, userMailPwd, userWeiboId, userWeiboPwd;
-    int userScore, userLevel, userMoney;
+    String userScore, userLevel, userMoney;
     
     public String getUserId() {
     	return userId;
@@ -52,27 +52,27 @@ public class UserInfoFormBean {
     	userWeiboPwd = w;
     }
     
-    public int getUserScore() {
+    public String getUserScore() {
     	return userScore;    
     }
     
-    public void setUserScore(int i) {
+    public void setUserScore(String i) {
     	userScore = i;
     }
     
-    public int getUserLevel() {
+    public String getUserLevel() {
     	return userLevel;
     }
     
-    public void setUserLevel(int l ) {
+    public void setUserLevel(String l ) {
     	userLevel = l;
     }
     
-    public int getUserMoney() {
+    public String getUserMoney() {
     	return userMoney;
     }
     
-    public void setUserMoney(int i) {
+    public void setUserMoney(String i) {
     	userMoney = i;
     }
 }

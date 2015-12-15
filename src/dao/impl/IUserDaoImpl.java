@@ -25,7 +25,7 @@ public class IUserDaoImpl implements IUserDao{
 	    	if(resultSet.next()){
 	    		String id = resultSet.getString(1);
 	    		String registerTime = resultSet.getString(4);
-	    		User t = new User(id,userName,userPwd,registerTime);
+	    		User t = new User(id, userName, userPwd, registerTime);
 	    		return t;
 	    	}	
 	    }
