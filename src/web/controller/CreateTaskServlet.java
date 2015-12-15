@@ -11,6 +11,7 @@ import web.formbean.*;
 import service.impl.*;
 import domain.*;
 import util.*;
+import util.*;
 /**
  * Servlet implementation class CreateTaskServlet
  */
@@ -31,82 +32,60 @@ public class CreateTaskServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ATaskFormBean form = WebUtils.request2Bean(request, ATaskFormBean.class);
-		User user = (new IUserServiceImpl()).getUser(form.getUserId());
+		String userId = form.getUserId();
 		
-		switch(form.getThisType()) {
-		case IfThis.thisReceiveMailTypeValue : { 
-			IfThisReceiveMail this_ = new IfThisReceiveMail(user.getUserEmailAddr(), user.getUserEmailPwd()); 
+		int thisType = -1, thatType = -1;
+		try {
+			thisType = form.getThisTypeInt();
+			thatType = form.getThatTypeInt();
+		} catch( NumberFormatException e ) {
 			
-			// that
-			if(form.getThatType() == ThenThat.thatSendMailTypeValue) {
-				ThenThatSendMail that_ = new ThenThatSendMail(user.getUserEmailAddr(), user.getUserEmailPwd(), 
-						form.getDestMailAddr(), form.getSendContent());
-				
-				// add a task
-				IUserServiceImpl service = new IUserServiceImpl();
-				service.addTask(user, IdGenerator.makeId(), form.getTaskName(), this_, that_);
-			}
-			else if( form.getThatType() == ThenThat.thatSendWeiboTypeValue) {
-				ThenThatSendWeibo that_ = new ThenThatSendWeibo(user.getUserWeiboId(), user.getUserWeiboAccessToken(), 
-						user.getUserWeiboPwd(), form.getSendContent());
-				
-				// add a task
-				IUserServiceImpl service = new IUserServiceImpl();
-				service.addTask(user, IdGenerator.makeId(), form.getTaskName(), this_, that_);
-			}
+		}
+ 		IfThis this_ = null;
+		ThenThat that_ = null;
+		
+		// this
+		switch(thisType) {
+		case IfThis.thisReceiveMailTypeValue : { 
+			this_ = new IfThisReceiveMail(userId); 
 			break;
 		}
 		case IfThis.thisTimeTypeValue : {
-            IfThisTime this_ = new IfThisTime(form.getGoalTime()); 
-			
-			// that
-			if(form.getThatType() == ThenThat.thatSendMailTypeValue) {
-				ThenThatSendMail that_ = new ThenThatSendMail(user.getUserEmailAddr(), user.getUserEmailPwd(), 
-						form.getDestMailAddr(), form.getSendContent());
-				
-				// add a task
-				IUserServiceImpl service = new IUserServiceImpl();
-				service.addTask(user, IdGenerator.makeId(), form.getTaskName(), this_, that_);
-			}
-			else if( form.getThatType() == ThenThat.thatSendWeiboTypeValue) {
-				ThenThatSendWeibo that_ = new ThenThatSendWeibo(user.getUserWeiboId(), user.getUserWeiboAccessToken(), 
-						user.getUserWeiboPwd(), form.getSendContent());
-				
-				// add a task
-				IUserServiceImpl service = new IUserServiceImpl();
-				service.addTask(user, IdGenerator.makeId(), form.getTaskName(), this_, that_);
-			}
-			
+            this_ = new IfThisTime(form.getGoalTime()); 
 			break;
 		}
 		case IfThis.thisListenWeiboTypeValue : {
-            IfThisListenWeibo this_ = new IfThisListenWeibo(form.getListenWbId(), form.getListenWbText(), form.getListenTimeLen()); 
-			
-			// that
-			if(form.getThatType() == ThenThat.thatSendMailTypeValue) {
-				ThenThatSendMail that_ = new ThenThatSendMail(user.getUserEmailAddr(), user.getUserEmailPwd(), 
-						form.getDestMailAddr(), form.getSendContent());
-				
-				// add a task
-				IUserServiceImpl service = new IUserServiceImpl();
-				service.addTask(user, IdGenerator.makeId(), form.getTaskName(), this_, that_);
-			}
-			else if( form.getThatType() == ThenThat.thatSendWeiboTypeValue) {
-				ThenThatSendWeibo that_ = new ThenThatSendWeibo(user.getUserWeiboId(), user.getUserWeiboAccessToken(), 
-						user.getUserWeiboPwd(), form.getSendContent());
-				
-				// add a task
-				IUserServiceImpl service = new IUserServiceImpl();
-				service.addTask(user, IdGenerator.makeId(), form.getTaskName(), this_, that_);
-			}
-			break;
+             this_ = new IfThisListenWeibo(form.getListenWbId(), form.getListenWbText(), form.getListenTimeLen()); 
+			 break;
 		}
+		 default: System.out.println("Unknown ThisType");
+		}
+		
+	 // that
+	  switch(thatType) {
+	  case ThenThat.thatSendMailTypeValue: {
+		  that_ = new ThenThatSendMail(userId, form.getDestMailAddr(), form.getSendContent());
+		  break;
 	  }
+	  case ThenThat.thatSendWeiboTypeValue: {
+		  that_ = new ThenThatSendWeibo(userId, form.getSendContent());
+		  break;
+	  }
+	  default: System.out.println("Unknown ThatType");
+	  }
+	  
+	  // this_ and that_ 's id
+	  this_.setThisId(IdGenerator.makeId());
+	  that_.setThatId(IdGenerator.makeId());
+	  
+	  // add a task
+	  IUserServiceImpl service = new IUserServiceImpl();
+	  service.addTask(userId, IdGenerator.makeId(), form.getTaskName(), this_, that_);
 		
 	  // construct form
 		UserTasksFormBean formbean = new UserTasksFormBean();
-		formbean.setUserId(user.getId());
-		formbean.setUserTasks(user.getUserTasks());
+		formbean.setUserId(userId);
+		formbean.setUserTasks(service.getUserTasks(userId));
 		request.setAttribute("formbean", formbean);
 		
 		// jump to UserTasks.jsp

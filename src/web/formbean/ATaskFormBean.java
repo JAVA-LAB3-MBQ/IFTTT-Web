@@ -7,8 +7,8 @@ public class ATaskFormBean {
 	private String listenWbId, listenWbText, listenTimeLen;
 	private String destMailAddr, sendContent;
     private String goalTime;
-    private int thisType, thatType;
-    private Task selectedTask;
+    private String thisType, thatType;
+    private String taskId;
     
     public String getUserId() { 
     	return userId; 
@@ -82,19 +82,25 @@ public class ATaskFormBean {
     	goalTime = gt;
     }
     
-    public int getThisType() {
+    public String getThisType() {
     	return thisType;
     }
     
-    public void setThisType(int tt) {
+    public int getThisTypeInt() throws NumberFormatException{
+    	return Integer.parseInt(thisType);
+    }
+    public void setThisType(String tt) {
     	thisType = tt;
     }
     
-    public int getThatType() {
+    public String getThatType() {
     	return thatType;
     }
+    public int getThatTypeInt() throws NumberFormatException{
+    	return Integer.parseInt(thatType);
+    }
     
-    public void setThatType(int tt) {
+    public void setThatType(String tt) {
     	thatType = tt;
     }
     
@@ -106,11 +112,11 @@ public class ATaskFormBean {
     	listenTimeLen = ltl;
     }
     
-    public Task getSelectedTask() {
-    	return selectedTask;
+    public String getSelectedTask() {
+    	return taskId;
     }
     
-    public void setSelectedTask(Task t) {
-    	selectedTask = t;
+    public void setSelectedTask(String t) {
+    	taskId = t;
     }
 }

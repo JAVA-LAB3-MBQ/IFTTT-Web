@@ -6,11 +6,11 @@ public class ThenThatSendWeibo extends ThenThat{
 	private String thatWeiboPwd;
 	private String thatWeiboContent;
 
-	public ThenThatSendWeibo(String id, String at, String pwd, String c) {
-		thatWeiboId = id;
-		thatWeiboAccessToken = at;
-		thatWeiboPwd = pwd;
+	public ThenThatSendWeibo(String userId, String c) {
+		// todo: get user's weiboId and accessToken, weibopwd
 		thatWeiboContent = c;
+		
+		this.setThatType(ThenThat.thatSendWeiboTypeValue);
 	}
 	
 	public boolean doIt() {

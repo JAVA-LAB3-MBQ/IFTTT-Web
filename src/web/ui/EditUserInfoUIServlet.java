@@ -41,7 +41,7 @@ public class EditUserInfoUIServlet extends HttpServlet {
 	    formbean.setUserMailPwd(user.getUserEmailPwd());
 	    formbean.setUserWeiboId(user.getUserWeiboId());
 	    formbean.setUserWriboPwd(user.getUserWeiboPwd());
-	    formbean.setUserMoney(user.getUserMoney());
+	    formbean.setUserMoney(String.format("%d", user.getUserMoney()));
 	    request.setAttribute("formbean", formbean);
 	    
 	    // jump to EditUserInfo.jsp

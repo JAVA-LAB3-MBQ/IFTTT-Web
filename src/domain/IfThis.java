@@ -23,5 +23,5 @@ public abstract class IfThis {
 		thisType = ty;
 	}
 	
-	abstract boolean ifHappened(); // must be overrided
+	abstract boolean ifHappened(); // must be override
 }

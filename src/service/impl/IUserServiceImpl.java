@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class IUserServiceImpl implements IUserService {
 	String url = "jdbc:mysql://localhost:3306/java" ;   
@@ -53,7 +54,7 @@ public class IUserServiceImpl implements IUserService {
 		return t.find(userName, userPwd);
 	}
 	
-	public Task removeTask(User user, Task task) {
+	public Task removeTask(String userId, Task task) {
 		// todo:
 		// remove from database 
 		// remove from user
@@ -68,7 +69,7 @@ public class IUserServiceImpl implements IUserService {
 		return user;
 	}
 	
-	public Task addTask(User user, String tId, String tName, IfThis this_, ThenThat that_) {
+	public Task addTask(String userId, String tId, String tName, IfThis this_, ThenThat that_) {
 		// todo:
 		// construct a task, 
 		Task task = new Task();
@@ -80,11 +81,18 @@ public class IUserServiceImpl implements IUserService {
 		return task;
 	}
 	
-	public Task editTask(User user, Task task, String tName, IfThis this_, ThenThat that_) {
+	public Task editTask(String userId, Task task, String tName, IfThis this_, ThenThat that_) {
 		// todo:
 		// change task
 		// remove oldThis and oldThat from DataBase
 		// insert new this_ and new that_
 		return task;
+	}
+	
+	public ArrayList<Task> getUserTasks(String userId) {
+		// todo: get tasks from the DataBase
+		ArrayList<Task> tasks = new ArrayList<Task>();
+		
+		return tasks;
 	}
 }

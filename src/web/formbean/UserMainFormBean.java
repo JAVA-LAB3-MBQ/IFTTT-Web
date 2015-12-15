@@ -2,7 +2,7 @@ package web.formbean;
 
 public class UserMainFormBean {
 	String userId, userName;
-	int userScore, userLevel;
+	String userScore, userLevel;
 
 	public String getUserId() {
 		return userId;
@@ -20,19 +20,19 @@ public class UserMainFormBean {
 		userName = un;
 	}
 	
-	public int getUserScore() {
+	public String getUserScore() {
 		return userScore;
 	}
 	
-	public void serUserScore(int s) {
+	public void serUserScore(String s) {
 		userScore = s;
 	}
 	
-	public int getUserLevel() {
+	public String getUserLevel() {
 		return userLevel;
 	}
 	
-	public void setUserLevel(int l) {
+	public void setUserLevel(String l) {
 		userLevel = l;
 	}
 }

@@ -9,6 +9,8 @@ public class IfThisListenWeibo extends IfThis{
 		thisWeiboId = id;
 		thisWeiboContent = text;
 		thisTimeLen = time;
+		
+		this.setThisType(IfThis.thisListenWeiboTypeValue);
 	}
 	
 	public boolean ifHappened() {

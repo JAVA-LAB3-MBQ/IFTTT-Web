@@ -5,6 +5,8 @@ public class IfThisTime extends IfThis{
 	
 	public IfThisTime(String t) {
 		goalTime = t;
+		
+		this.setThisType(IfThis.thisTimeTypeValue);
 	}
 	
 	public boolean ifHappened() {
