@@ -4,7 +4,7 @@ import domain.User;
 import dao.IUserDao;
 import java.sql.*;
 
-public class IUserDaoImpl implements IUserDao{
+public class UserDaoImpl implements IUserDao{
 	String url = "jdbc:mysql://localhost:3306/java" ;   
     String username = "root" ;    
     String password = "5555" ;  
@@ -34,6 +34,11 @@ public class IUserDaoImpl implements IUserDao{
 	    	se.printStackTrace() ;    
 	    }  
 	    return null;
+	}
+	
+	public User find(String userId) {
+		// todo : get the user 
+		return null;
 	}
 	public void add(User user){
 		try{

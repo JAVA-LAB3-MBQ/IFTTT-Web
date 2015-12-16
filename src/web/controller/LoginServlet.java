@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.impl.IUserServiceImpl;
+import service.impl.UserServiceImpl;
 import domain.User; 
 /**
  * Servlet implementation class LoginServlet
@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 				
 		String password = request.getParameter("password");
 				
-		IUserServiceImpl service = new IUserServiceImpl();
+		UserServiceImpl service = new UserServiceImpl();
 				
 		User user = service.loginUser(username, password);
 		if(user==null){ // fail

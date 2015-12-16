@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.impl.IUserServiceImpl;
+import service.impl.UserServiceImpl;
 import web.formbean.UserTasksFormBean;
 import web.formbean.*;
 import service.impl.*;
@@ -35,12 +35,12 @@ public class UserTasksUIServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		
 		// get the user
-		IUserServiceImpl service = new IUserServiceImpl();
-		User user = service.getUser(userId);
+		UserServiceImpl service = new UserServiceImpl();
+		User user = service.getUserInfo(userId);
 		
 		// construct formbean
 		UserTasksFormBean formbean = new UserTasksFormBean();
-		formbean.setUserTasks(user.getUserTasks());
+		formbean.setUserTasks((new UserServiceImpl()).getUserTasks(userId));
 		formbean.setUserId(userId);
 		request.setAttribute("formbean", formbean);
 		

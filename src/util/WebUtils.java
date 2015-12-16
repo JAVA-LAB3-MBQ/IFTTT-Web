@@ -30,11 +30,4 @@ public class WebUtils {
 		}
 	}
 	
-	/* 
-	 * convert a Date object to String
-	 */
-	public static String date2String(Date d) {
-		final String pattern = "yyyy-MM-dd HH:mm";
-		return (new SimpleDateFormat(pattern)).format(d);
-	}
 }

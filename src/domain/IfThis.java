@@ -4,8 +4,10 @@ public abstract class IfThis {
 	public final static int thisReceiveMailTypeValue = 1;
 	public final static int thisTimeTypeValue = 2;
 	public final static int thisListenWeiboTypeValue = 3; 
-	String thisId;
-	int thisType;
+	
+	private String thisId;
+	private int thisType;
+	private String thisIconPath;
 	
 	public String getThisId() {
 		return thisId;
@@ -23,5 +25,15 @@ public abstract class IfThis {
 		thisType = ty;
 	}
 	
-	abstract boolean ifHappened(); // must be override
+	public String getThisIconPath() {
+		return thisIconPath;
+	}
+	
+	public void setThisIconPath(String iconp) {
+		thisIconPath = iconp;
+	}
+	
+	abstract public boolean ifHappened(); 
+	abstract public boolean add2Db(); 
+	abstract public boolean removeFromDb();
 }

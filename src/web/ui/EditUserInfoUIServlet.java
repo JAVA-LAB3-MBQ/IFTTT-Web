@@ -32,8 +32,8 @@ public class EditUserInfoUIServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		
 		// get the user
-		IUserServiceImpl service = new IUserServiceImpl();
-		User user = service.getUser(userId);
+		UserServiceImpl service = new UserServiceImpl();
+		User user = service.getUserInfo(userId);
 		
 		// construct the formbean
 		UserInfoFormBean formbean = new UserInfoFormBean();

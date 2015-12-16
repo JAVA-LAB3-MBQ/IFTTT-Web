@@ -13,13 +13,12 @@ import org.apache.commons.beanutils.locale.converters.*;
 
 import java.util.Date;
 
-import service.impl.IUserServiceImpl;
+import service.impl.UserServiceImpl;
 import service.IUserService;
 import domain.User; 
 
 import web.formbean.RegisterFormBean;
-import util.WebUtils;
-import util.IdGenerator;
+import util.*;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -58,11 +57,11 @@ public class RegisterServlet extends HttpServlet {
 		    user.setName(formbean.getUserName());
 		    user.setPwd(formbean.getUserPwd());
 		    System.out.println("Register Servlet " + user.getName());
-		    user.setId(IdGenerator.makeId()); // user's id
-		    user.setRegisterTime(WebUtils.date2String(new Date())); // current time
+		    user.setId(IdGeneratorUtil.makeId()); // user's id
+		    user.setRegisterTime(DateStringUtil.date2String(new Date())); // current time
 		
 		    // registering an user	
-		    IUserService service = new IUserServiceImpl();
+		    IUserService service = new UserServiceImpl();
 		    user = service.registerUser(user);
 		    if( user == null ){ // failed
 		    	// todo:

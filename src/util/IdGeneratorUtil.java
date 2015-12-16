@@ -3,7 +3,7 @@ package util;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class IdGenerator {
+public class IdGeneratorUtil {
 	 private static final long ONE_STEP = 10;
 	 private static final Lock LOCK = new ReentrantLock();
 	 private static long lastTime = System.currentTimeMillis();

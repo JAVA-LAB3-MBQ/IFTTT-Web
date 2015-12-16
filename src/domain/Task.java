@@ -7,11 +7,14 @@ public class Task {
 	private String userId;
 	private String taskId;
 	private String taskName;
+	
 	private String thisId, thatId;
 	private int thisType, thatType;
 	private String thisIconPath;
 	private String thatIconPath;
+	
 	private String createTime;
+	
 	private int taskStatus;
 
 	public String getUserId() {
