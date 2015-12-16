@@ -11,4 +11,8 @@ public interface ITaskService {
 	public Task editTask(String userId, Task task, String tName, IfThis this_, ThenThat that_);
 	
 	public Task removeTask(String userId, Task task);
+
+    public boolean startTask(String taskId);
+    
+    public boolean pauseTask(String taskId);
 }

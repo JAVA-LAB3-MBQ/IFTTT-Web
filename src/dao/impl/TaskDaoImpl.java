@@ -22,4 +22,14 @@ public class TaskDaoImpl implements ITaskDao {
 		
 		return tasks; 
 	}
+	
+	public boolean startTask(String taskId) {
+		// todo: change the task's status
+		return false;
+	}
+	
+	public boolean pauseTask(String taskId) {
+		// todo: change the task's status
+		return false;
+	}
 }
