@@ -8,7 +8,7 @@ public interface ITaskService {
 
 	public Task addTask(String userId, String tId, String tName, IfThis this_, ThenThat that_);
 	
-	public Task editTask(String userId, Task task, String tName, IfThis this_, ThenThat that_);
+	public Task editTask(String userId, String tId, String tName, IfThis this_, ThenThat that_);
 	
 	public Task removeTask(String userId, Task task);
 

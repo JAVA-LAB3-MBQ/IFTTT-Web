@@ -22,12 +22,12 @@ public class TaskServiceImpl implements ITaskService {
         return task;
 	}
 	
-	public Task editTask(String userId, Task task, String tName, IfThis this_, ThenThat that_) {
+	public Task editTask(String userId, String tId, String tName, IfThis this_, ThenThat that_) {
 		// todo:
 		// change task
 		// remove oldThis and oldThat from DataBase
 		// insert new this_ and new that_
-		return task;
+		return null;
 	}
 
 	public Task removeTask(String userId, Task task) {
