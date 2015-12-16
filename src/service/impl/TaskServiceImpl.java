@@ -4,6 +4,7 @@ import domain.IfThis;
 import domain.Task;
 import domain.ThenThat;
 import service.ITaskService;
+import dao.impl.TaskDaoImpl;
 
 public class TaskServiceImpl implements ITaskService {
 	public Task addTask(String userId, String tId, String tName, IfThis this_, ThenThat that_) {
@@ -34,5 +35,17 @@ public class TaskServiceImpl implements ITaskService {
 		// remove from database 
 		// remove from user
 		return null;
+	}
+	
+	public boolean startTask(String taskId) {
+		// todo: start it
+		TaskDaoImpl tdb = new TaskDaoImpl();
+		return tdb.startTask(taskId);
+	}
+	
+	public boolean pauseTask(String taskId) {
+		// todo: start it
+	    TaskDaoImpl tdb = new TaskDaoImpl();
+		return tdb.pauseTask(taskId);
 	}
 }
