@@ -34,13 +34,9 @@ public class CreateTaskServlet extends HttpServlet {
 		ATaskFormBean form = WebUtils.request2Bean(request, ATaskFormBean.class);
 		String userId = form.getUserId();
 		
-		int thisType = -1, thatType = -1;
-		try {
-			thisType = form.getThisTypeInt();
-			thatType = form.getThatTypeInt();
-		} catch( NumberFormatException e ) {
-			
-		}
+		int	thisType = form.getThisTypeInt();
+		int	thatType = form.getThatTypeInt();
+		
  		IfThis this_ = null;
 		ThenThat that_ = null;
 		

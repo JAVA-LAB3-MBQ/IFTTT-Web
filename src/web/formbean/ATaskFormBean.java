@@ -1,5 +1,6 @@
 package web.formbean;
 
+import domain.IfThis;
 import domain.Task;
 public class ATaskFormBean {
 	private String userId, taskName;
@@ -86,8 +87,8 @@ public class ATaskFormBean {
     	return thisType;
     }
     
-    public int getThisTypeInt() throws NumberFormatException{
-    	return Integer.parseInt(thisType);
+    public int getThisTypeInt() {
+    	return WebUtils.ThisTypeString2Int(thisType);
     }
     public void setThisType(String tt) {
     	thisType = tt;
@@ -96,8 +97,8 @@ public class ATaskFormBean {
     public String getThatType() {
     	return thatType;
     }
-    public int getThatTypeInt() throws NumberFormatException{
-    	return Integer.parseInt(thatType);
+    public int getThatTypeInt() {
+    	return WebUtils.ThatTypeString2Int(thatType);
     }
     
     public void setThatType(String tt) {
