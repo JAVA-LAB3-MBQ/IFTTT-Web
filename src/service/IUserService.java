@@ -11,4 +11,6 @@ public interface IUserService {
 	public User getUserInfo(String uId);
 	
 	public ArrayList<Task> getUserTasks(String userId);
+	
+	public User editUserInfo(String uId, String mail, String mailPwd, String weiboId, String weiboPwd);
 }

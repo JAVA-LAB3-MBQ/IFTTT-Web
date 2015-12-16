@@ -112,11 +112,11 @@ public class ATaskFormBean {
     	listenTimeLen = ltl;
     }
     
-    public String getSelectedTask() {
+    public String getTaskId() {
     	return taskId;
     }
     
-    public void setSelectedTask(String t) {
+    public void setTaskId(String t) {
     	taskId = t;
     }
 }

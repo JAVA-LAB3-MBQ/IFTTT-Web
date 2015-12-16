@@ -100,4 +100,12 @@ public class UserServiceImpl implements IUserService {
 		
 		return tasks;
 	}
+	
+	public User editUserInfo(String uId, String mail, String mailPwd, String weiboId, String weiboPwd) {
+		// todo: change user's information, using methods in dao
+		UserDaoImpl udb = new UserDaoImpl();
+		User user = udb.find(uId);
+		
+		return user;
+	}
 }

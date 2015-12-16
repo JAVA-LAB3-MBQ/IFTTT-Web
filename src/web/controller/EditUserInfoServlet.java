@@ -6,21 +6,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import web.formbean.*;
+import util.WebUtils;
 import service.impl.UserServiceImpl;
-import web.formbean.UserMainFormBean;
-import domain.User; 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class EditUserInfoServlet
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/EditUserInfoServlet")
+public class EditUserInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public EditUserInfoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,31 +28,23 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("in LoginServlet");				
-		String username = request.getParameter("username");
-				
-		String password = request.getParameter("password");
-				
-		UserServiceImpl service = new UserServiceImpl();
-				
-		User user = service.loginUser(username, password);
+		// get form
+		UserInfoFormBean form = WebUtils.request2Bean(request, UserInfoFormBean.class);
 		
-		if(user != null){ // successed
-			System.out.println("login successfully");
-		    
-			// construct formbean
-			UserMainFormBean formbean = new UserMainFormBean();
-			formbean.setUserId(user.getId());
-			formbean.setUserLevel(String.format("%d", user.getUserLevel()));
-			formbean.setUserName(user.getName());
-			request.setAttribute("formbean", formbean);
-				
-			// jump to UserMain.jsp
-			request.getRequestDispatcher("/WEB-INF/UserMain.jsp").forward(request, response);
-		}
-		else { // failed
-			// todo: 	
-		}
+		// change user's information
+		UserServiceImpl service = new UserServiceImpl();
+		User user = service.editUserInfo(form.getUserId(), form.getUserMail(), form.getUserMailPwd(), 
+							form.getUserWeiboId(), form.getUserWeiboPwd());
+		
+		// construct formbean
+		UserMainFormBean formbean = new UserMainFormBean();
+		formbean.setUserId(user.getId());
+		formbean.setUserLevel(String.format("%d", user.getUserLevel()));
+		formbean.setUserName(user.getName());
+		request.setAttribute("formbean", formbean);
+						
+		// jump to UserMain.jsp
+		request.getRequestDispatcher("/WEB-INF/UserMain.jsp").forward(request, response)
 	}
 
 	/**
