@@ -1,6 +1,7 @@
 package web.controller;
-
+import domain.User;
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import web.formbean.*;
 import util.WebUtils;
 import service.impl.UserServiceImpl;
+
 /**
  * Servlet implementation class EditUserInfoServlet
  */
@@ -44,7 +46,7 @@ public class EditUserInfoServlet extends HttpServlet {
 		request.setAttribute("formbean", formbean);
 						
 		// jump to UserMain.jsp
-		request.getRequestDispatcher("/WEB-INF/UserMain.jsp").forward(request, response)
+		request.getRequestDispatcher("/WEB-INF/UserMain.jsp").forward(request, response);
 	}
 
 	/**
