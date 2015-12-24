@@ -2,6 +2,7 @@ package web.formbean;
 
 import domain.IfThis;
 import domain.Task;
+import util.WebUtils;
 public class ATaskFormBean {
 	private String userId, taskName;
 	private String thisIconPath, thatIconPath;
@@ -88,7 +89,7 @@ public class ATaskFormBean {
     }
     
     public int getThisTypeInt() {
-    	return WebUtils.ThisTypeString2Int(thisType);
+    	return WebUtils.thisTypeString2Int(thisType);
     }
     public void setThisType(String tt) {
     	thisType = tt;
@@ -98,7 +99,7 @@ public class ATaskFormBean {
     	return thatType;
     }
     public int getThatTypeInt() {
-    	return WebUtils.ThatTypeString2Int(thatType);
+    	return WebUtils.thatTypeString2Int(thatType);
     }
     
     public void setThatType(String tt) {

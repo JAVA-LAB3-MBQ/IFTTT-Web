@@ -46,7 +46,7 @@ public class RegisterServlet extends HttpServlet {
 		if (formbean.isRegiInfoValid() == false) {// failed, show errors (in formbean) in the register page 
 			System.out.println("info false");
 			request.setAttribute("formbean", formbean);
-			request.getRequestDispatcher("/register.jsp").forward(request, response);
+			request.getRequestDispatcher("/Register.jsp").forward(request, response);
 			return;
 		}
 
@@ -68,7 +68,7 @@ public class RegisterServlet extends HttpServlet {
 			
 		    }
 		    else { // successfully
-		    	request.getRequestDispatcher("/login.jsp").forward(request, response);
+		    	request.getRequestDispatcher("/Login.jsp").forward(request, response);
 		    }
 		}
 		catch(Exception e) {

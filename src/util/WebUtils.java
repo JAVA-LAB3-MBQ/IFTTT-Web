@@ -35,7 +35,7 @@ public class WebUtils {
 	/*
 	 * convert 'thisType' from jsp to integer in IfThis 
 	 */
-	public int thisTypeString2Int(String t) {
+	public static int thisTypeString2Int(String t) {
 		if(t.equals("RECEIVE_MAIL") == true) {
 			return IfThis.thisReceiveMailTypeValue;
 		}
@@ -54,7 +54,7 @@ public class WebUtils {
 	/*
 	 * convert 'thatType' from jsp to integer in ThenThat
 	 */
-	public int thatTypeString2Int(String t) {
+	public static int thatTypeString2Int(String t) {
 		if(t.equals("SEND_MAIL") == true) {
 			return ThenThat.thatSendMailTypeValue;
 		}
@@ -70,7 +70,7 @@ public class WebUtils {
 	/*
 	 * convert 'thisType' from IfThis to String in jsp 
 	 */
-	public String thisTypeInt2String(int t) {
+	public static String thisTypeInt2String(int t) {
 		switch(t) {
 		case IfThis.thisReceiveMailTypeValue: return "RECEIVE_MAIL";
 		case IfThis.thisTimeTypeValue: return "TIME";
@@ -83,7 +83,7 @@ public class WebUtils {
 	/*
 	 * convert 'thisType' from ThenThat to String in jsp 
 	 */
-	public String thatTypeInt2String(int t) {
+	public static String thatTypeInt2String(int t) {
 		switch(t) {
 		case ThenThat.thatSendWeiboTypeValue: return "SEND_WEIBO";
 		case ThenThat.thatSendMailTypeValue: return "SEND_MAIL";

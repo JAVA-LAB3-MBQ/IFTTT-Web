@@ -28,7 +28,7 @@ public class RegisterUIServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("in RegisterUIServlet");
-		request.getRequestDispatcher("/register.jsp").forward(request, response);
+		request.getRequestDispatcher("/Register.jsp").forward(request, response);
 	}
 
 	/**

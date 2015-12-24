@@ -28,7 +28,7 @@ public class LoginUIServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("In LoginUIServlet\n");
-		request.getRequestDispatcher("/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/Login.jsp").forward(request, response);
 	}
 
 	/**
