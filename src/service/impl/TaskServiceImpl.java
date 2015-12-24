@@ -11,8 +11,8 @@ public class TaskServiceImpl implements ITaskService {
 	public Task addTask(String userId, String tId, String tName, IfThis this_, ThenThat that_) {
 		// todo:
 		// construct a task, 
-		Task task = new Task();
-				
+		Task task = new Task(userId, tId, tName, this_.getThisId(), that_.getThatId(), this_.getThisType(), that_.getThatType());	
+		
 		// add this_ into database
 		this_.add2Db();
 	    // add that_ into database
@@ -28,6 +28,7 @@ public class TaskServiceImpl implements ITaskService {
 		// change task
 		// remove oldThis and oldThat from DataBase
 		// insert new this_ and new that_
+		
 		return null;
 	}
 

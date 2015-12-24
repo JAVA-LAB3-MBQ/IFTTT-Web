@@ -1,6 +1,7 @@
 package web.controller;
-
+import domain.User;
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import web.formbean.*;
 import util.WebUtils;
 import domain.User;
 import service.impl.UserServiceImpl;
+
 /**
  * Servlet implementation class EditUserInfoServlet
  */
