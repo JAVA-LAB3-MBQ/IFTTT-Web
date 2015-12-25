@@ -7,21 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import web.formbean.UserSelectTaskFormBean;
-import web.formbean.*;
-import service.impl.*;
-import domain.*;
+import domain.User;
+import service.impl.UserServiceImpl;
+import web.formbean.UserInfoFormBean;
+
 /**
- * Servlet implementation class RemoveTaskUIServlet
+ * Servlet implementation class UserInfoUIServlet
  */
-@WebServlet("/RemoveTaskUIServlet")
-public class RemoveTaskUIServlet extends HttpServlet {
+@WebServlet("/UserInfoUIServlet")
+public class UserInfoUIServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RemoveTaskUIServlet() {
+    public UserInfoUIServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,18 +30,28 @@ public class RemoveTaskUIServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// get userId, selectedTask
+		// get userId
 		String userId = request.getParameter("userId");
-		Task selectedTask = (Task)request.getAttribute("selectedTask");
+				
+		// get the user
+		UserServiceImpl service = new UserServiceImpl();
+		User user = service.getUserInfo(userId);
 				
 		// construct formbean
-		UserSelectTaskFormBean formbean = new UserSelectTaskFormBean();
+		UserInfoFormBean formbean = new UserInfoFormBean();
+		formbean.setUserLevel(String.format("%d",user.getUserLevel()));
+		formbean.setUserMail(user.getUserEmailAddr());
 		formbean.setUserId(userId);
-		formbean.setSelectedTask(selectedTask);
+		formbean.setUserMailPwd(user.getUserEmailPwd());
+		formbean.setUserName(user.getName());
+		formbean.setUserMoney(String.format("%d", user.getUserMoney()));
+		formbean.setUserScore(String.format("%d", user.getUserScore()));
+		formbean.setUserWeiboId(user.getUserWeiboId());
+		formbean.setUserWriboPwd(user.getUserWeiboPwd());
 		request.setAttribute("formbean", formbean);
 				
-		// jump to RemoveTask.jsp
-		request.getRequestDispatcher("/WEB-INF/RemoveTask.jsp").forward(request, response);
+		// jump to UserTasks.jsp
+		request.getRequestDispatcher("/UserInfo.jsp").forward(request, response);
 	}
 
 	/**
