@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>UserInfo</title>
+    <title>UserMain</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -128,20 +128,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <div id="logo" >
-    <img src="${pageContext.request.contextPath}/imag/7.jpg">
+    <img src="${pageContext.request.contextPath}/imag/logo.jpg">
     <span class="head_tips">Do Some Services for You</span>
 </div>
     <div id="menus">
             <ul>
-                <li> 
-                <a href="${pageContext.request.contextPath}/UserTasksUIServlet"?userId=formbean.userId>Tasks</a>
-                </li>
+                <li><a href="a.jsp">Task</a>
                 <ul>
                     <li>
                         <a href="a1.jsp">View Task</a>
                     </li>
                     <li>
-                        <a href="a1.jsp">Creat Task</a>
+                        <a href="a1.jsp">Create Task</a>
                     </li>
                     <li>
                         <a href="a1.jsp">Edit Task</a>
@@ -166,7 +164,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </li>
             </ul>
     </div>
-    <div id="pre_pic"><img src="imag/icon_prve.jpg"></div>
+    <div id="pre_pic"><img src="${pageContext.request.contextPath}/imag/icon_prve.jpg"></div>
     <div id="line">
         <img src="${pageContext.request.contextPath}/imag/line.jpg" />
     </div>

@@ -73,26 +73,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <div id="logo" >
-    <img src="imag/7.jpg">
+    <img src="${pageContext.request.contextPath}/imag/logo.jpg">
     <span class="head_tips">Do Some Services for You</span>
 </div>
     <div id="sign_in"><a href="Login.jsp">Sign in</a></div>
     <div id = "sign_up"><a href="Register.jsp">Sign up</a></div>
     
-    <div id="pre_pic"><img src="imag/icon_prve.jpg"></div>
+    <div id="pre_pic"><img src="${pageContext.request.contextPath}/imag/icon_prve.jpg"></div>
     <div id="line">
-        <img src="imag/line.jpg" />
+        <img src="${pageContext.request.contextPath}/imag/line.jpg" />
     </div>
     <div id="pics">
-        <img src="imag/5.jpg" id="big_img">
+        <img src="${pageContext.request.contextPath}/imag/5.jpg" id="big_img">
     </div>
-    <div id="next_pic"><img src="imag/icon_next.jpg"></div>
+    <div id="next_pic"><img src="${pageContext.request.contextPath}/imag/icon_next.jpg"></div>
     <script type="text/javascript">
         setInterval(Change, 2000);
         function Change()
         {
             var number = Math.ceil(Math.random() * 6);
-            document.getElementById("big_img").src = "imag/" + number + ".jpg";
+            document.getElementById("big_img").src = "${pageContext.request.contextPath}/imag/" + number + ".jpg";
         }
     </script>
 </body>

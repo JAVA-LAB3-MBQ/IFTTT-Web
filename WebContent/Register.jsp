@@ -33,15 +33,15 @@
 	                 text-align:center;}
 	span#sign_in_tip{position:absolute;
 	                 left:60%;
-	                 top:10%;
+	                 top:8%;
 	                 font-size:75%;}
 </style>
 </head>
 	<body style = "text-align: center">
 		<div id="title_pic">
-				<img src="${pageContext.request.contextPath}/imag/7.jpg">
+				<img src="${pageContext.request.contextPath}/imag/logo.jpg">
 				<img src = "${pageContext.request.contextPath}/imag/title_line.png">
-				<label id = "${pageContext.request.contextPath}/signup_info">sign up</label>
+				<label id = "signup_info">sign up</label>
 				<img src="${pageContext.request.contextPath}/imag/line.png">
 		</div>
 		<span id="sign_in_tip">
@@ -51,7 +51,8 @@
 			</a>
 		</span>
 		<div id = "login-inner">
-		<form action = "${pageContext.request.contextPath}/servlet/RegisterServlet" method = "post">
+		<form action = "${pageContext.request.contextPath}/servlet/
+			RegisterServlet" method = "post">
 			<p>
 				<label>Username：&nbsp;&nbsp;&nbsp;</label>
 				<input type = "text" name = "userName"  value = "${formbean.userName}" style = "height: 20px ;width: 200px">${formbean.errors.userName} 
@@ -64,7 +65,7 @@
 				<br>
 			<p>
 				<label>&nbsp;&nbsp;Confirm：&nbsp;&nbsp;&nbsp;</label>
-				<input type = "password" name = "confirmPwd"  value = "${formbean.confirmPwd}" style = "height: 20px ;width: 200px">${formbean.errors.confirmPwd}
+				<input type = "text" name = "confirmPwd"  value = "${formbean.confirmPwd}" style = "height: 20px ;width: 200px">${formbean.errors.confirmPwd}
 			</p>
 				<br>
 			<p id = "login_btn">

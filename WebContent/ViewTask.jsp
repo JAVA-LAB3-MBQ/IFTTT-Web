@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
     <div id="logo">
-        <img src="imag/logo.jpg">
+        <img src="${pageContext.request.contextPath}/imag/logo.jpg">
         <span class="head_tips" style="font-size:21px;">Do Some Services for You</span>
     </div>
     <div id="menus">
@@ -52,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </ul>
     </div>
     <div class="title_pics">
-        <img src="image/line.jpg">
+        <img src="${pageContext.request.contextPath}/imag/line.jpg">
         <div id="title_tips">
             &nbsp;&nbsp;&nbsp;&nbsp;Your Tasks&nbsp;&nbsp;<label id="taskNum">3/3 enabled</label>
         </div>
@@ -65,17 +65,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <span>
                             &nbsp;if&nbsp;
                             <!--<div id="primaryObj" style="position: absolute; left:15%;">-->
-                            <img src="imag/clock.png" style="padding-top:6px;width:80px;height:70px;" />
+                            <img src="${pageContext.request.contextPath}/imag/clock.png" style="padding-top:6px;width:80px;height:70px;" />
                             &nbsp;then
-                            <img src="imag/weibo.jpg" style="width:80px;height:70px;" />
+                            <img src="${pageContext.request.contextPath}/imag/weibo.jpg" style="width:80px;height:70px;" />
                         </span>
                         <span style="font-size:12px;position:absolute;top:100%;left:16%; text-align:center;width:80px;height:auto;">every day 7:00 pm</span>
                         <span style="font-size:12px;position:absolute;top:100%;left:45%;text-align:center;width:80px;">MyDarlinghh send a weibo </span>
                         <div id="edit_icons">
-                            <a href="#"><img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" width="60" height="50" /></a>
-                            <a href="#"><img src="${pageContext.request.contextPath}/imag/delete_icon.png" width="60" height="50" /></a>
-                            <a href="#"><img src="${pageContext.request.contextPath}/imag/start_task_icon.png" width="60" height="50" /></a>
-                            <a href="#" id=""><img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" width="60" height="50" /></a>
+                            <a href="#"><img src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/imag/edit_task_icon.png" width="60" height="50" /></a>
+                            <a href="#"><img src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/imag/delete_icon.png" width="60" height="50" /></a>
+                            <a href="#"><img src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/imag/start_task_icon.png" width="60" height="50" /></a>
+                            <a href="#" id=""><img src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/imag/stop_task_icon.png" width="60" height="50" /></a>
                         </div>
                         <span id="taskTimetip">created about 1 hours ago</span>
                     </div>
@@ -85,17 +85,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <span id="taskId">2.</span>
                     <span>
                         &nbsp;if&nbsp;
-                        <img src="imag/mail.png" style="padding-top:6px;width:80px;height:70px;" />
+                        <img src="${pageContext.request.contextPath}/imag/mail.png" style="padding-top:6px;width:80px;height:70px;" />
                         &nbsp;then
-                        <img src="imag/weibo.jpg" style="width:80px;height:70px;" />
+                        <img src="${pageContext.request.contextPath}/imag/weibo.jpg" style="width:80px;height:70px;" />
                     </span>
                     <span style="font-size:12px;position:absolute;top:95%;left:16%; text-align:center;width:80px;">nj_txh@163.com recieved a mail</span>
                     <span style="font-size:12px;position:absolute;top:95%;left:45%;text-align:center;width:80px;">MyDarlinghh send a weibo </span>
                     <div id="edit_icons">
-                        <a href="#"><img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" width="60" height="50" /></a>
-                        <a href="#"><img src="${pageContext.request.contextPath}/imag/delete_icon.png" width="60" height="50" /></a> 
-                    	<a href="#"><img src="${pageContext.request.contextPath}/imag/start_task_icon.png" width="60" height="50" /></a>
-                    	<a href="#" id=""><img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" width="60" height="50" /></a>
+                        <a href="#"><img src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/imag/edit_task_icon.png" width="60" height="50" /></a>
+                        <a href="#"><img src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/imag/delete_icon.png" width="60" height="50" /></a> 
+                    	<a href="#"><img src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/imag/start_task_icon.png" width="60" height="50" /></a>
+                    	<a href="#" id=""><img src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/imag/stop_task_icon.png" width="60" height="50" /></a>
                     </div>
                     <span id="taskTimetip">created about 2 hours ago</span>
                 </div>
@@ -105,17 +105,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <span id="taskId">3.</span>
                     <span>
                         &nbsp;if&nbsp;
-                        <img src="imag/weibo.jpg" style="padding-top:6px;width:80px;height:70px;" />
+                        <img src="${pageContext.request.contextPath}/imag/weibo.jpg" style="padding-top:6px;width:80px;height:70px;" />
                         &nbsp;then
-                        <img src="imag/mail.png" style="width:80px;height:70px;" />
+                        <img src="${pageContext.request.contextPath}/imag/mail.png" style="width:80px;height:70px;" />
                     </span>
                     <span style="font-size:12px;position:absolute;top:95%;left:16%; text-align:center;width:80px;">MyDarlinghh send a weibo:"hello world"</span>
                     <span style="font-size:12px;position:absolute;top:95%;left:45%;text-align:center;width:80px;">send a mail to nj_txh@163.com </span>
                     <div id="edit_icons">
-                        <a href="#"><img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" width="60" height="50" /></a>
-                        <a href="#"><img src="${pageContext.request.contextPath}/imag/delete_icon.png" width="60" height="50" /></a>
-                      	<a href="#"><img src="${pageContext.request.contextPath}/imag/start_task_icon.png" width="60" height="50" /></a>
-                    	<a href="#" id=""><img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" width="60" height="50" /></a>
+                        <a href="#"><img src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/imag/edit_task_icon.png" width="60" height="50" /></a>
+                        <a href="#"><img src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/imag/delete_icon.png" width="60" height="50" /></a>
+                      	<a href="#"><img src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/imag/start_task_icon.png" width="60" height="50" /></a>
+                    	<a href="#" id=""><img src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/imag/stop_task_icon.png" width="60" height="50" /></a>
                     </div>
                       <span id="taskTimetip">created about 3 hours ago</span>
                 </div>
@@ -127,7 +127,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <button id="next_page" disabled="disabled">下一页</button>
     </span>
     <div style="position:absolute;top:30%;right:1%;">
-        <a><img src="${pageContext.request.contextPath}/imag/createTask.png" id="createTask_img"/></a>
+        <a><img src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/imag/createTask.png" id="createTask_img"/></a>
     </div>
 </body>
 </html>

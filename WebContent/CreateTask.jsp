@@ -91,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    </head>
 <body>
 	<div id="logo" >
-    <img src="${pageContext.request.contextPath}/imag/7.jpg">
+    <img src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/imag/logo.jpg">
     <span class="head_tips">Do Some Services for You</span>
 	</div>
     <div id="menus">
@@ -102,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <a href="a1.jsp">View Task</a>
                     </li>
                     <li>
-                        <a href="a1.jsp">Creat Task</a>
+                        <a href="a1.jsp">Create Task</a>
                     </li>
                     <li>
                         <a href="a1.jsp">Edit Task</a>
@@ -129,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <div class="contentbody">
         <div class="title_pics">
-            <img src="${pageContext.request.contextPath}/image/line.jpg">
+            <img src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/imag/line.jpg">
             <div id="title_tips">
                 &nbsp;&nbsp;&nbsp;&nbsp;Create a Recipe
             </div>
@@ -139,24 +139,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					CreatTaskServlet" class="creat_task" id="creat_task_form" method="post">
             <div class="choose_trigger">
                 <label>Choose trigger</label>
-                <img src="${pageContext.request.contextPath}/image/line.png">
+                <img src="${pageContext.request.contextPath}/imag/line.jpg">
             </div>
             <div class="pics">
-                <a href="#"><img id="clock_pic" src="${pageContext.request.contextPath}/image/clock.png" /></a>
+                <a href="#"><img id="clock_pic" src="${pageContext.request.contextPath}/imag/clock.png" /></a>
             </div>
             <div class="pics">
-                <a href="#"><img id="mail_pic" src="${pageContext.request.contextPath}/image/mail.png" /></a>
+                <a href="#"><img id="mail_pic" src="${pageContext.request.contextPath}/imag/mail.png" /></a>
             </div>
             <div class="pics">
-                <a href="#"><img id="weibo_pic" src="${pageContext.request.contextPath}/image/weibo.jpg" /></a>
+                <a href="#"><img id="weibo_pic" src="${pageContext.request.contextPath}/imag/weibo.jpg" /></a>
             </div>
             <div id="show_window_time" style="display:none">
                 <div class="window_form">
                     <form action="" method="post" id="editForm">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date：<input type="date" name="" id="input_day" class="ipt" /><br />
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time：<input type="time" name="" id="input_min" class="ipt" /><br />
-                        <input type = "hidden" name = "thisType" value = "Time">
-                        <input type = "hidden" name = "thisIconPath" value = "${pageContext.request.contextPath}/image/clock.png">
                         <!--&nbsp;&nbsp;&nbsp;<input type="submit" value="确认" class="submitBtn" />-->
                          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit"  id="submitBtn_time" value="commit">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -168,8 +166,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div id="show_window_mail" style="display:none">
                 <div class="window_form">
                     <form action="" method="post" id="editForm_mail">
-                        <input type="hidden" name="thisType" value="RECEIVE_MAIL">
-                        <input type="hidden" name="thisIconPath" value="${pageContext.request.contextPath}/image/mail.png">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mail：<input type="email" name="" id="input_email" class="ipt" /><br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password：<input type="password" name="" id="input_mail_pwd" class="ipt" /><br />
                         <!--&nbsp;&nbsp;&nbsp;<input type="submit" value="确认" class="submitBtn" />-->
                         &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" id="submitBtn_mail" value="commit">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -181,11 +179,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div id="show_window_weibo" style="display:none">
                 <div class="window_form">
                     <form action="" method="post" id="editForm_mail">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WeiboID：<input type="text" name="" id="listenWbId" class="ipt" /><br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Content：<input type="text" name="" id="listenWbText" class="ipt" /><br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;Time Length：<input type="text" name="" id="listenTimeLen" class="ipt" /><br />
-                        <input type="hidden" name="thisType" value="LISTEN_WEIBO"><br />
-                        <input type="hidden" name="thisIconPath" value="${pageContext.request.contextPath}/image/weibo.jpg">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WeiboID：<input type="text" name="" id="input_weibo_id" class="ipt" /><br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password：<input type="password" name="" id="input_weibo_pwd" class="ipt" /><br />
                         <!--&nbsp;&nbsp;&nbsp;<input type="submit" value="确认" class="submitBtn" />-->
                         &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" id="submitBtn_weibo" value="commit">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -212,7 +207,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <form action="" method="post" id="editForm_mail">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WeiboID：<input type="text" name="" id="input_weibo_send_id" class="ipt" /><br />
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password：<input type="password" name="" id="input_weibo_send_pwd" class="ipt" /><br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Content：<input type="password" name="" id="input_weibo_send_pwd" class="ipt" /><br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contend：<input type="password" name="" id="input_weibo_send_pwd" class="ipt" /><br />
                         <!--&nbsp;&nbsp;&nbsp;<input type="submit" value="确认" class="submitBtn" />-->
                         &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" id="submitBtn_weibo_send" value="commit">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -222,16 +217,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
             </div>
             <div id="center_contatiner">
-                <img src="${pageContext.request.contextPath}/image/creat.png" id="bg_image" />
+                <img src="${pageContext.request.contextPath}/imag/creat.jpg" id="bg_${pageContext.request.contextPath}/image" />
             </div>
             <div class="chooseTask">
                 <label>Choose Task</label>
             </div>
             <div class="pics">
-                <a href="#"><img id="mail_pic_task" src="${pageContext.request.contextPath}/image/mail.png" /></a>
+                <a href="#"><img id="mail_pic_task" src="${pageContext.request.contextPath}/imag/mail.png" /></a>
             </div>
             <div class="pics">
-                <a href="#"><img id="weibo_pic_task" src="${pageContext.request.contextPath}/image/weibo.jpg" /></a>
+                <a href="#"><img id="weibo_pic_task" src="${pageContext.request.contextPath}/imag/weibo.jpg" /></a>
             </div>
         </form>
     </div>

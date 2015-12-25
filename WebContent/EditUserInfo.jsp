@@ -98,11 +98,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 	<div class ="logo" >
-    <img src="${pageContext.request.contextPath}/imag/7.jpg">
+    <img src="${pageContext.request.contextPath}/imag/logo.jpg">
     <span class="head_tips">| Information setting</span>
 	</div>
 	<div class ="line">
-        <img src="imag/line.jpg" />
+        <img src="${pageContext.request.contextPath}/imag/line.jpg" />
     </div>
     <div class = "title_info">
     	<span>Preference >> Setting</span>
@@ -159,7 +159,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<label>UserWeibo</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             		<input type = "text" id = "userWeibo" value = "${formbean.userWeibo}" width = "59" height = "40">
-            		<img src = "imag/line.jpg" class = "line">
+            		<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
             	</p>
             	<p>
 					<label>UserScore</label>

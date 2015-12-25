@@ -31,13 +31,13 @@
 	                 text-align:center;}
 	span#login_in_tip{position:absolute;
 	                 left:60%;
-	                 top:10%;
+	                 top:8%;
 	                 font-size:75%;}
 </style>
 </head>
 	<body style = "text-align: center">
 		<div id="title_pic">
-				<img src="${pageContext.request.contextPath}/imag/7.jpg">
+				<img src="${pageContext.request.contextPath}/imag/logo.jpg">
 				<img src = "${pageContext.request.contextPath}/imag/title_line.png">
 				<label id = "sign_info">sign in</label>
 				<img src="${pageContext.request.contextPath}/imag/line.png">
@@ -66,7 +66,9 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;<input type = "button"  class = "button" id = "reset" value = "reset" 
 						onclick = "window.location.href = 'Login.jsp'">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="${pageContext.request.contextPath}/servlet/LoginUIServlet">
 						<button type = "submit" class = "button" id = "register">sign in</button>
+						</a>
 					</span>
 				</p>	
 		</form>
