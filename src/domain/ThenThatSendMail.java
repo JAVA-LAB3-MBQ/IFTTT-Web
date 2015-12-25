@@ -26,6 +26,7 @@ public class ThenThatSendMail extends ThenThat{
 
 	public ThenThatSendMail() {
 		this.setThatType(ThenThat.thatSendMailTypeValue);
+		this.setThatInfo("Send a mail");
 	}
 	
 	public ThenThatSendMail(String userId, String did, String c) {
@@ -35,13 +36,16 @@ public class ThenThatSendMail extends ThenThat{
 		thatEmailContent = c;
 		
 		this.setThatType(ThenThat.thatSendMailTypeValue);
+		this.setThatInfo("Send a mail: receiver-" + thatDestEmailId + ";content-" + thatEmailContent);
 	}
+	
 	public ThenThatSendMail(String thatSrcEmailId, String thatSrcEmailPwd, String thatDestEmailId, String thatEmailContent){
 		this.thatSrcEmailId = thatSrcEmailId;
 		this.thatSrcEmailPwd = thatSrcEmailPwd;
 		this.thatDestEmailId = thatDestEmailId;
 		this.thatEmailContent = thatEmailContent;
 		this.setThatType(ThenThat.thatSendMailTypeValue);
+		this.setThatInfo("Send a mail: receiver-" + thatDestEmailId + ";content-" + thatEmailContent);
 	}
 	
 	public boolean doIt(){
@@ -69,7 +73,7 @@ public class ThenThatSendMail extends ThenThat{
 		    MimeMessage message = new MimeMessage(session);
 		    message.setFrom(new InternetAddress(thatSrcEmailId));
 		    message.addRecipient(Message.RecipientType.TO, new InternetAddress(thatDestEmailId));
-		    message.setSubject("Java lab3");
+		    message.setSubject("Java lab4");
 		    message.setText(thatEmailContent);
 		
 	        // Send message

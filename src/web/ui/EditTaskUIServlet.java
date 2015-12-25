@@ -32,16 +32,18 @@ public class EditTaskUIServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// get userId, selectedTask
 		String userId = request.getParameter("userId");
-		Task selectedTask = (Task)request.getAttribute("selectedTask");
+		String taskId = request.getParameter("taskId");
 		
 		// construct formbean
 		UserSelectTaskFormBean formbean = new UserSelectTaskFormBean();
+		TaskServiceImpl tservice = new TaskServiceImpl();
+		Task selectedTask = tservice.getTask(taskId);
 		formbean.setUserId(userId);
 		formbean.setSelectedTask(selectedTask);
 		request.setAttribute("formbean", formbean);
 		
 		// jump to EditTask.jsp
-		request.getRequestDispatcher("/WEB-INF/EditTask.jsp").forward(request, response);
+		request.getRequestDispatcher("/EditTask.jsp").forward(request, response);
 	}
 
 	/**

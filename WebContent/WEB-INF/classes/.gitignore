@@ -1,5 +1,5 @@
-/dao/
-/domain/
-/service/
-/util/
 /web/
+/dao/
+/service/
+/domain/
+/util/

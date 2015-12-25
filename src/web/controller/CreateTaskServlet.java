@@ -51,8 +51,9 @@ public class CreateTaskServlet extends HttpServlet {
 			break;
 		}
 		case IfThis.thisListenWeiboTypeValue : {
-             this_ = new IfThisListenWeibo(form.getListenWbId(), form.getListenWbText(), form.getListenTimeLen());
-             
+             this_ = new IfThisListenWeibo(form.getListenWbId(), form.getListenWbPwd(), 
+            		 form.getListenWbText(), form.getListenTimeLen());
+       
 			 break;
 		}
 		 default: System.out.println("Unknown ThisType");
@@ -75,18 +76,22 @@ public class CreateTaskServlet extends HttpServlet {
 	  this_.setThisId(IdGeneratorUtil.makeId());
 	  that_.setThatId(IdGeneratorUtil.makeId());
 	  
+	  // this_ and that_'s icon path
+	  this_.setThisIconPath(form.getThisIconPath());
+	  that_.setThatIconPath(form.getThatIconPath());
+	  
 	  // add a task
 	  TaskServiceImpl tservice = new TaskServiceImpl();
 	  tservice.addTask(userId, IdGeneratorUtil.makeId(), form.getTaskName(), this_, that_);
 		
 	  // construct form
-		UserTasksFormBean formbean = new UserTasksFormBean();
-		formbean.setUserId(userId);
-		formbean.setUserTasks((new UserServiceImpl()).getUserTasks(userId));
-		request.setAttribute("formbean", formbean);
+	  UserTasksFormBean formbean = new UserTasksFormBean();
+	  formbean.setUserId(userId);
+	  formbean.setUserTasks((new UserServiceImpl()).getUserTasks(userId));
+	  request.setAttribute("formbean", formbean);
 		
-		// jump to UserTasks.jsp
-		request.getRequestDispatcher("/WEB-INF/UserTasks.jsp").forward(request, response);
+	  // jump to UserTasks.jsp
+	  request.getRequestDispatcher("/UserTasks.jsp").forward(request, response);
 	}
 
 	/**

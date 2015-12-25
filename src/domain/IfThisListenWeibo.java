@@ -14,38 +14,17 @@ public class IfThisListenWeibo extends IfThis{
 	
 	public IfThisListenWeibo() {
 		this.setThisType(IfThis.thisListenWeiboTypeValue);
+		this.setThisInfo("Listen Weibo");
 	}
 	
-	public IfThisListenWeibo(String weiboId, String content, String t) {
+	public IfThisListenWeibo(String weiboId, String weiboPwd, String content, String t) {
 		setThisWeiboId(weiboId);
 		setThisWeiboContent(content);
 		setThisTimeLen(t);
+		setThisWeiboPwd(weiboPwd);
 		
 		this.setThisType(IfThis.thisListenWeiboTypeValue);
-	}
-	
-	public String getThisWeiboId() {
-		return thisWeiboId;
-	}
-	
-	public void setThisWeiboId(String s) {
-		thisWeiboId = s;
-	}
-	
-	public String getThisWeiboContent() {
-		return thisWeiboContent;
-	}
-	
-	public void setThisWeiboContent(String c) {
-		thisWeiboContent = c;
-	}
-	
-	public String getThisTimeLen() {
-		return thisTimeLen;
-	}
-	
-	public void setThisTimeLen(String l) {
-		thisTimeLen = l;
+		this.setThisInfo("Listen Weibo: id-" + weiboId + ";content-" + content + ";time-" + t);
 	}
 	
 	public boolean ifHappened() {
@@ -103,5 +82,37 @@ public class IfThisListenWeibo extends IfThis{
 	    	se.printStackTrace() ;    
 	     }  
 		return true;
+	}
+	
+	public String getThisWeiboId() {
+		return thisWeiboId;
+	}
+	
+	public void setThisWeiboId(String s) {
+		thisWeiboId = s;
+	}
+	
+	public String getThisWeiboContent() {
+		return thisWeiboContent;
+	}
+	
+	public void setThisWeiboContent(String c) {
+		thisWeiboContent = c;
+	}
+	
+	public String getThisTimeLen() {
+		return thisTimeLen;
+	}
+	
+	public void setThisTimeLen(String l) {
+		thisTimeLen = l;
+	}
+	
+	public String getThisWeiboPwd() {
+		return thisWeiboPwd;
+	}
+	
+	public void setThisWeiboPwd(String s) {
+		thisWeiboPwd = s;
 	}
 }

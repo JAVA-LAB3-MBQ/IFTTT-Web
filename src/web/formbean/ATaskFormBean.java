@@ -6,11 +6,19 @@ import util.WebUtils;
 public class ATaskFormBean {
 	private String userId, taskName;
 	private String thisIconPath, thatIconPath;
-	private String listenWbId, listenWbText, listenTimeLen;
+	private String listenWbId, listenWbText, listenTimeLen, listenWbPwd;
 	private String destMailAddr, sendContent;
     private String goalTime;
     private String thisType, thatType;
     private String taskId;
+    
+    public String getListenWbPwd() {
+    	return listenWbPwd;
+    }
+    
+    public void setListenWbPwd(String p) {
+    	listenWbPwd = p;
+    }
     
     public String getUserId() { 
     	return userId; 

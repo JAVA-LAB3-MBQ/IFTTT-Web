@@ -45,7 +45,7 @@ public class EditUserInfoUIServlet extends HttpServlet {
 	    request.setAttribute("formbean", formbean);
 	    
 	    // jump to EditUserInfo.jsp
-	    request.getRequestDispatcher("/WEB-INF/EditUserInfo.jsp").forward(request, response);
+	    request.getRequestDispatcher("/EditUserInfo.jsp").forward(request, response);
 	}
 
 	/**

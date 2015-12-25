@@ -39,7 +39,7 @@ public class RemoveTaskServlet extends HttpServlet {
 				
 		// pause it
 		TaskServiceImpl tservice = new TaskServiceImpl();
-		tservice.removeTask(userId, taskId);
+		tservice.removeTask(taskId);
 			    
 		// construct formbean
 		ArrayList<Task> tasks = (new UserServiceImpl()).getUserTasks(userId);
@@ -49,7 +49,7 @@ public class RemoveTaskServlet extends HttpServlet {
 		request.setAttribute("formbean", formbean);
 			    
 		// jump to UserTasks.jsp
-		request.getRequestDispatcher("/WEB-INF/UserTask.jsp").forward(request, response);;
+		request.getRequestDispatcher("/UserTask.jsp").forward(request, response);;
 	}
 
 	/**

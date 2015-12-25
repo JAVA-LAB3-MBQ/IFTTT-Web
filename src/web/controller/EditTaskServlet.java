@@ -64,7 +64,8 @@ public class EditTaskServlet extends HttpServlet {
 			break;
 		}
 		case IfThis.thisListenWeiboTypeValue : {
-             this_ = new IfThisListenWeibo(form.getListenWbId(), form.getListenWbText(), form.getListenTimeLen());
+             this_ = new IfThisListenWeibo(form.getListenWbId(), form.getListenWbPwd(), 
+            		 form.getListenWbText(), form.getListenTimeLen());
              
 			 break;
 		}
@@ -88,6 +89,10 @@ public class EditTaskServlet extends HttpServlet {
 	    this_.setThisId(IdGeneratorUtil.makeId());
 	    that_.setThatId(IdGeneratorUtil.makeId());
 	  
+	    // this_ and that_ 's icon path
+	    this_.setThisIconPath(form.getThisIconPath());
+	    that_.setThatIconPath(form.getThatIconPath());
+	    
 	    // add a task
 	    TaskServiceImpl tservice = new TaskServiceImpl();
 	    tservice.editTask(userId, form.getTaskId(), form.getTaskName(), this_, that_);
@@ -99,7 +104,7 @@ public class EditTaskServlet extends HttpServlet {
 		request.setAttribute("formbean", formbean);
 		
 		// jump to UserTasks.jsp
-		request.getRequestDispatcher("/WEB-INF/UserTasks.jsp").forward(request, response);
+		request.getRequestDispatcher("/UserTasks.jsp").forward(request, response);
 	}
 
 	/**

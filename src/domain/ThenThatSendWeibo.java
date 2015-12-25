@@ -13,6 +13,7 @@ public class ThenThatSendWeibo extends ThenThat{
 
 	public ThenThatSendWeibo() {
 		this.setThatType(ThenThat.thatSendWeiboTypeValue);
+		this.setThatInfo("Send Weibo");
 	}
 	
 	public ThenThatSendWeibo(String userId, String c) {
@@ -20,6 +21,7 @@ public class ThenThatSendWeibo extends ThenThat{
 		thatWeiboContent = c;
 		
 		this.setThatType(ThenThat.thatSendWeiboTypeValue);
+		this.setThatInfo("Send Weibo: content-" + thatWeiboContent);
 	}
 	
 	public boolean doIt() {

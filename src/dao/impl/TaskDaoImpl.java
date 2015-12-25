@@ -30,14 +30,14 @@ public class TaskDaoImpl implements ITaskDao {
 		return false;
 	}
 	
-	public boolean removeTask(Task t) {
+	public boolean removeTask(String tid) {
 		// todo : remove the Task from db
 		try{
 			Class.forName("com.sql.jdbc.Driver");
 			Connection con =
 					DriverManager.getConnection(DatabaseInfo.url, DatabaseInfo.username, DatabaseInfo.password);
 			Statement statement = con.createStatement();
-			String update = "delete * from task where taskId = \"" + t.getTaskId() + "\"";
+			String update = "delete * from task where taskId = \"" + tid + "\"";
 			statement.executeUpdate(update);
 		}
 		catch(ClassNotFoundException e){
@@ -61,6 +61,9 @@ public class TaskDaoImpl implements ITaskDao {
 			ResultSet res = statement.executeQuery(query);
 			while(res.next()){
 				Task t = new Task(res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getInt(6),res.getInt(7),res.getString(8),res.getString(9),res.getString(10),res.getInt(11));
+				// todo: about info
+				//t.setThisInfo( );
+				//t.setThatInfo( );
 				tasks.add(t);
 			}
 			return tasks;
@@ -72,6 +75,13 @@ public class TaskDaoImpl implements ITaskDao {
 			
 		}
 		return null; 
+	}
+	
+	public Task getATask(String taskId) {
+		// todo :
+		Task t = new Task();
+		
+		return t;
 	}
 	
 	public boolean startTask(String taskId) {

@@ -129,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 <div id="logo" >
     <img src="${pageContext.request.contextPath}/imag/logo.jpg">
-    <span class="head_tips">Do Some Services for You</span>
+    <span class="head_tips">${formbean.userName} Level ${formbean.userLevel} Score ${formbean.userScore}</span>
 </div>
     <div id="menus">
             <ul>

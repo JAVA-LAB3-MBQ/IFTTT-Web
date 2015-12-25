@@ -21,20 +21,14 @@ public class IfThisReceiveMail extends IfThis{
 
 	public IfThisReceiveMail() {
 		this.setThisType(IfThis.thisReceiveMailTypeValue);
+		this.setThisInfo("Receive a new mail");
 	}
 	
 	public IfThisReceiveMail(String userId) {
 		// todo: get user's email and emailpwd
 		
-		this.setThisType(IfThis.thisReceiveMailTypeValue);	
-	}
-	
-	public void setThisEmailId(String ea) {
-		thisEmailId = ea;
-	}
-	
-	public void setThisEmailPwd(String ep) {
-		thisEmailPwd = ep;
+		this.setThisType(IfThis.thisReceiveMailTypeValue);
+		this.setThisInfo("Receive a new mail");
 	}
 	
 	public boolean ifHappened() {
@@ -148,5 +142,21 @@ public class IfThisReceiveMail extends IfThis{
 	    	se.printStackTrace() ;    
 	     }  
 		return true;
+	}
+	
+	public void setThisEmailId(String ea) {
+		thisEmailId = ea;
+	}
+	
+	public String getThisEmailId() {
+		return thisEmailId;
+	}
+	
+	public void setThisEmailPwd(String ep) {
+		thisEmailPwd = ep;
+	}
+	
+	public String getThisEmailPwd() {
+		return thisEmailPwd;
 	}
 }

@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
 			request.setAttribute("formbean", formbean);
 				
 			// jump to UserMain.jsp
-			request.getRequestDispatcher("/WEB-INF/UserMain.jsp").forward(request, response);
+			request.getRequestDispatcher("/UserMain.jsp").forward(request, response);
 		}
 		else { // failed
 			// todo: 	

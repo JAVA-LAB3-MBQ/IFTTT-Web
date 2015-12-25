@@ -13,6 +13,7 @@ public class Task {
 	private int thisType, thatType;
 	private String thisIconPath;
 	private String thatIconPath;
+	private String thisInfo, thatInfo;
 	
 	private String createTime;
 	
@@ -20,8 +21,10 @@ public class Task {
 
 	public Task(){
 		createTime = (DateStringUtil.date2String(new Date()));
+		taskStatus = Task.pausedStatus;
 	}
-	public Task(String userId, String taskId, String taskName, String thisID, String thatId, int thisType, int thatType){
+	
+	public Task(String userId, String taskId, String taskName, String thisId, String thatId, int thisType, int thatType){
 		this.userId = userId;
 		this.taskId = taskId;
 		this.taskId = taskId;
@@ -30,6 +33,7 @@ public class Task {
 		this.thatType = thatType;
 		createTime = DateStringUtil.date2String(new Date());
 	}
+	
 	public Task(String userId, String taskId, String taskName, String thisId, String thatId, int thisType, int thatType, String thisIconPath, String thatIconPath, String createTime, int taskStatus){
 		this.userId = userId;
 		this.taskId = taskId;
@@ -42,6 +46,7 @@ public class Task {
 		this.createTime = createTime;
 		this.taskStatus = taskStatus;
 	}
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -92,5 +97,26 @@ public class Task {
 	}
 	public void setThatType(int t){
 		thatType = t;
+	}
+	public String getThisInfo() {
+		return thisInfo;
+	}
+	public void setThisInfo(String info) {
+		thisInfo = info;
+	}
+	public String getThatInfo() {
+		return thatInfo;
+	}
+	public void setThatInfo(String info) {
+		thatInfo = info;
+	}
+	public void setThisIconPath(String p) {
+		thisIconPath = p;
+	}
+	public void setThatIconPath(String p) {
+		thatIconPath = p;
+	}
+	public void setTaskStatus(int st) {
+		taskStatus = st;
 	}
 }

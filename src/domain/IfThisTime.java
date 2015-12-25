@@ -10,20 +10,14 @@ public class IfThisTime extends IfThis{
 	
 	public IfThisTime() {
 		this.setThisType(IfThis.thisTimeTypeValue);
+		this.setThisInfo("Timing");
 	}
 	
 	public IfThisTime(String t) {
 		setGoalTime(t);
 		
 		this.setThisType(IfThis.thisTimeTypeValue);
-	}
-	
-	public void setGoalTime(String t) {
-		goalTime = t;
-	}
-	
-	public String getGoalTime() {
-		return goalTime;
+		this.setThisInfo(t);
 	}
 	
 	public boolean ifHappened() {
@@ -85,5 +79,15 @@ public class IfThisTime extends IfThis{
 			se.printStackTrace();
 		}
 		return true;
+	}
+	
+	
+	
+	public void setGoalTime(String t) {
+		goalTime = t;
+	}
+	
+	public String getGoalTime() {
+		return goalTime;
 	}
 }

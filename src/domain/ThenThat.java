@@ -6,6 +6,7 @@ public abstract class ThenThat {
 	private String thatId;
 	private int thatType;
 	private String thatIconPath;
+	private String thatInfo;
 	
 	public String getThatId() {
 		return thatId;
@@ -29,6 +30,14 @@ public abstract class ThenThat {
 	
 	public void setThatIconPath(String iconp) {
 		thatIconPath = iconp;
+	}
+	
+	public String getThatInfo() {
+		return thatInfo;
+	}
+	
+	public void setThatInfo(String i) {
+		thatInfo = i;
 	}
 	
 	abstract public boolean doIt();

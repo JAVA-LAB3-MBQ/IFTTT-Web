@@ -1,4 +1,4 @@
-package web.ui;
+package web.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,19 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import web.formbean.*;
+import service.impl.UserServiceImpl;
 /**
- * Servlet implementation class CreateTaskUIServlet
+ * Servlet implementation class SignOutServlet
  */
-@WebServlet("/CreateTaskUIServlet")
-public class CreateTaskUIServlet extends HttpServlet {
+@WebServlet("/SignOutServlet")
+public class SignOutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateTaskUIServlet() {
+    public SignOutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,16 +26,15 @@ public class CreateTaskUIServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// get userId
+		// get userid
 		String userId = request.getParameter("userId");
 		
-		// construst formbean
-		UserIdFormBean formbean = new UserIdFormBean();
-		formbean.setUserId(userId);
-		request.setAttribute("formbean", formbean);
+		// sign out
+		UserServiceImpl uservice = new UserServiceImpl();
+		uservice.signOut(userId);
 		
-		// jump to CreateTask.jsp
-		request.getRequestDispatcher("/CreateTask.jsp").forward(request, response);
+		// jump 
+		request.getRequestDispatcher("/guide.jsp").forward(request, response);
 	}
 
 	/**

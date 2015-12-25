@@ -1,13 +1,30 @@
 package dao.impl;
 
 import domain.User;
+import domain.DatabaseInfo;
 import dao.IUserDao;
 import java.sql.*;
 
 public class UserDaoImpl implements IUserDao{
 	String url = "jdbc:mysql://localhost:3306/java" ;   
-    String username = "root" ;    
-    String password = "5555" ;  
+    String username = DatabaseInfo.username ;    
+    String password = DatabaseInfo.password ; 
+    
+    public boolean changeUserStatus(String userId, int newStatus) {
+    	// todo: change the user's status in the User table
+    	// if the user's current status == newStatus, return false
+    	return false;
+    }
+    
+    public boolean remove(String userId) {
+    	// todo: remove it
+    	return false;
+    }
+    public User find(String userId) {
+		// todo : get the user
+		return null;
+	}
+   
 	public User find(String userName, String userPwd){
 		try{
 		    Class.forName("com.mysql.jdbc.Driver") ; 
@@ -36,10 +53,8 @@ public class UserDaoImpl implements IUserDao{
 	    return null;
 	}
 	
-	public User find(String userId) {
-		// todo : get the user 
-		return null;
-	}
+	
+	
 	public void add(User user){
 		try{
 		    Class.forName("com.mysql.jdbc.Driver") ; 
