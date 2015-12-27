@@ -1,75 +1,100 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page language="java" import="java.util.ArrayList"%>
+<%@page language="java" import="domain.Task"%>
+<%@page language="java" import="web.formbean.UserTasksFormBean"%>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-<%
-String tasksId[] = new String[3];
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <script>
-// global variables
-var nextTaskNo = 0;
+// eles about tasks in this Page
+var taskNo = 0;
 var tasksInCurPage = 0;
-var tasksThisImg = new Array("task1ThisImg", "task2ThisImg", "task3ThisImg");
-var tasksThatImg = new Array("task1ThatImg", "task2ThatImg", "task3ThatImg");
-var tasksThisInfo = new Array("task1ThisInfo", "task2ThisInfo", "task3ThisInfo");
-var tasksThatInfo = new Array("task1ThatInfo", "task2ThatInfo", "task3ThatInfo");
-var tasksName = new Array("task1Name", "task2Name", "task3Name");
-var tasksCreateTime = new Array("task1CreateTime", "task2CreateTime", "task3CreateTime");
+var tasksIdInCurPage = new Array(3);
+var thisImgIds = new Array("task1ThisImg", "task2ThisImg", "task3ThisImg");
+var thatImgIds = new Array("task1ThatImg", "task2ThatImg", "task3ThatImg");
+var thisInfoIds = new Array("task1ThisInfo", "task2ThisInfo", "task3ThisInfo");
+var thatInfoIds = new Array("task1ThatInfo", "task2ThatInfo", "task3ThatInfo");
+var nameIds = new Array("task1Name", "task2Name", "task3Name");
+var createTimeIds = new Array("task1CreateTime", "task2CreateTime", "task3CreateTime");
 var tasksEdit = new Array("task1Edit", "task2Edit", "task3Edit");
 var tasksDelete = new Array("task1Delete", "task2Delete", "task3Delete");
 var tasksStart = new Array("task1Start", "task2Start", "task3Start");
 var tasksStop = new Array("task1Stop", "task2Stop", "task3Stop");
 var tasksIf = new Array("task1If", "task2If", "task3If");
 var tasksThen = new Array("task1Then", "task2Then", "task3Then");
+// tasks' information
+var tasksLen;
+var tasksName = new Array();
+var tasksThisIconPath = new Array();
+var tasksThatIconPath = new Array();
+var tasksThisInfo = new Array();
+var tasksThatInfo = new Array();
+var tasksCreateTime = new Array();
+var tasksId = new Array();
+<%
+ArrayList<Task> userTasks = ((UserTasksFormBean)(request.getAttribute("formbean"))).getUserTasks();
+if(userTasks != null){
+	for(int j = 0;j < userTasks.size(); j ++) {%>
+    //alert("111");
+    tasksName[<%=j%>] = '<%=userTasks.get(j).getTaskName()%>';
+    tasksThisIconPath[<%=j%>] = '<%=userTasks.get(j).getThisIconPath()%>';
+    tasksThatIconPath[<%=j%>] = '<%=userTasks.get(j).getThatIconPath()%>';
+    tasksThisInfo[<%=j%>] = '<%=userTasks.get(j).getThisInfo()%>';
+    tasksThatInfo[<%=j%>] = '<%=userTasks.get(j).getThatInfo()%>';
+    tasksCreateTime[<%=j%>] = '<%=userTasks.get(j).getCreateTime()%>';
+    tasksId[<%=j%>] = '<%=userTasks.get(j).getTaskId()%>';
+    alert(tasksThisInfo[<%=j%>]);
+<%}
+}%>
 
 function showTasks() {
-	var userTs = '${formbean.userTasks}';
-	var tasksLen = '${formbean.userTasks.size()}';
-	if(nextTaskNo >= tasksLen || nextTaskNo < 0) return;
+	tasksLen = '${formbean.userTasks.size()}';
+	if(taskNo >= tasksLen || taskNo < 0) return;
 	
 	var i;
 	tasksInCurPage = 0;
 	for(i = 0; i < 3; i ++) {
-		var thisImgEle = document.getElementById(tasksThisImg[i]);
-		var thatImgEle = document.getElementById(tasksThatImg[i]);
-		var thisInfoEle = document.getElementById(tasksThisInfo[i]);
-		var thatInfoEle = document.getElementById(tasksThatInfo[i]);
-		var createTimeEle = document.getElementById(tasksCreateTime[i]);
-		var nameEle = document.getElementById(tasksName[i]);
+		var thisImgEle = document.getElementById(thisImgIds[i]);
+		var thatImgEle = document.getElementById(thatImgIds[i]);
+		var thisInfoEle = document.getElementById(thisInfoIds[i]);
+		var thatInfoEle = document.getElementById(thatInfoIds[i]);
+		var createTimeEle = document.getElementById(createTimeIds[i]);
+		var nameEle = document.getElementById(nameIds[i]);
 		
-		if(nextTaskNo < tasksLen) {
-			'tasksId[i] = ${formbean.userTasks.get(nextTaskNo).getTaskId()}';
-			
+		if(taskNo < tasksLen) {
+			tasksIdInCurPage[i] = tasksId[i];
+		
 			// about task's information
 			thisImgEle.style.visibility = "visible";
-			thisImgEle.src = '${formbean.userTasks.get(nextTaskNo).getThisIconPath()}';
+			thisImgEle.src = tasksThisIconPath[i];
 			//alert(thisImgEle.src);
 			
 			thatImgEle.style.visibility = "visible";
-			thatImgEle.src = '${formbean.userTasks.get(nextTaskNo).getThatIconPath()}';
+			thatImgEle.src = tasksThatIconPath[i];
 			//alert(thatImgEle.src);
 			
 			thisInfoEle.style.visibility = "visible";
-			thisInfoEle.innerHTML = '${formbean.userTasks.get(nextTaskNo).getThisInfo()}';
+			thisInfoEle.innerHTML = tasksThisInfo[i];
 			//alert(thisInfoEle.innerHTML);
 			
 			thatInfoEle.style.visibility = "visible";
-			thatInfoEle.innerHTML = '${formbean.userTasks.get(nextTaskNo).getThatInfo()}';
+			thatInfoEle.innerHTML = tasksThatInfo[i];
 			//alert(thatInfoEle.innerHTML);
 			
 			createTimeEle.style.visibility = "visible";
-			createTimeEle.innerHTML = '${formbean.userTasks.get(nextTaskNo).getCreateTime()}';
+			createTimeEle.innerHTML = tasksCreateTime[i];
 			//alert(createTimeEle.innerHTML);
 			
 			nameEle.style.visibility = "visible";
-			nameEle.innerHTML = '${formbean.userTasks.get(nextTaskNo).getTaskName()}' + ":";
-			//alert(nameEle.innerHTML);
+			nameEle.innerHTML = tasksName[taskNo];
+			//alert("88" + tasksName[taskNo]);
 			
 			// operations about task
 			document.getElementById(tasksEdit[i]).style.visibility = "visible";
@@ -79,8 +104,8 @@ function showTasks() {
 			document.getElementById(tasksIf[i]).style.visibility = "visible";
 			document.getElementById(tasksThen[i]).style.visibility = "visible";
 			
-			// nextTaskNo
-			nextTaskNo ++;
+			// next task
+			taskNo ++;
 			tasksInCurPage ++;
 		}
 		else { // hide elements
@@ -99,19 +124,39 @@ function showTasks() {
 			document.getElementById(tasksThen[i]).style.visibility = "hidden";
 		}
 	}
-	document.getElementById("taskNum").innerHTML = (nextTaskNo) + "/" + tasksLen;
+	document.getElementById("taskNum").innerHTML = (taskNo) + "/" + tasksLen;
 }
 
 function lastPage() {
-	alert("106");
-	nextTaskNo = nextTaskNo - tasksInCurPage - 3;
-	alert(nextTaskNo);
+	taskNo = taskNo - tasksInCurPage - 3;
 	showTasks();
 }
 
 function nextPage() {
 	showTasks();
 }
+
+function jump2Servlet(i, destServlet) {
+	var ftemp = document.createElement("form");
+    ftemp.action = "${pageContext.request.contextPath}/" + destServlet;        
+    ftemp.method = "post";        
+    ftemp.style.display = "none";        
+    
+    // userId
+    var uidParam = document.createElement("textarea");        
+    uidParam.name = "userId";
+    uidParam.value = '${formbean.userId}';
+    ftemp.appendChild(uidParam);
+    // taskId
+    var tidParam = document.createElement("textarea");        
+    tidParam.name = "taskId";
+    tidParam.value = tasksId[i-1];
+    ftemp.appendChild(tidParam);
+    
+    document.body.appendChild(ftemp);
+    ftemp.submit(); // jump
+}        
+	
 </script>
     <title>View Task</title>
     <link rel="stylesheet" type="text/css" href="taskmain.css" />
@@ -178,10 +223,18 @@ function nextPage() {
                         <span id="task1ThisInfo" style="font-size:12px;position:absolute;top:100%;left:16%; text-align:center;width:80px;height:auto;">every day 7:00 pm</span>
                         <span id="task1ThatInfo" style="font-size:12px;position:absolute;top:100%;left:45%;text-align:center;width:80px;">MyDarlinghh send a weibo </span>
                         <div id="edit_icons">
-                            <a href="#"><img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" id="task1Edit" width="60" height="50" /></a>
-                            <a href="#"><img src="${pageContext.request.contextPath}/imag/delete_icon.png" id="task1Delete" width="60" height="50" /></a>
-                            <a href="#"><img src="${pageContext.request.contextPath}/imag/start_task_icon.png" id="task1Start" width="60" height="50" /></a>
-                            <a href="#"><img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" id="task1Stop" width="60" height="50" /></a>
+                            <a href="" onclick="jump2Servlet(1,'EditTaskUIServlet'); return false">
+                            	<img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" id="task1Edit" width="60" height="50" />
+                            </a>
+                            <a href="" onclick="jump2Servlet(1,'RemoveTaskServlet'); return false">
+                            	<img src="${pageContext.request.contextPath}/imag/delete_icon.png" id="task1Delete" width="60" height="50" />
+                            </a>
+                            <a href="" onclick="jump2Servlet(1,'StartTaskServlet'); return false">
+                            	<img src="${pageContext.request.contextPath}/imag/start_task_icon.png" id="task1Start" width="60" height="50" />
+                            </a>
+                            <a href="" onclick="jump2Servlet(1,'PauseTaskServlet'); return false">
+                            	<img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" id="task1Stop" width="60" height="50" />
+                            </a>
                         </div>
                         <span id="taskTimetip">
                         	<font id="task1CreateTime">created about 1 hours ago</font>
@@ -200,10 +253,18 @@ function nextPage() {
                     <span id="task2ThisInfo" style="font-size:12px;position:absolute;top:95%;left:16%; text-align:center;width:80px;">nj_txh@163.com recieved a mail</span>
                     <span id="task2ThatInfo" style="font-size:12px;position:absolute;top:95%;left:45%;text-align:center;width:80px;">MyDarlinghh send a weibo </span>
                     <div id="edit_icons">
-                        <a href="#"><img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" id="task2Edit" width="60" height="50" /></a>
-                        <a href="#"><img src="${pageContext.request.contextPath}/imag/delete_icon.png" id="task2Delete" width="60" height="50" /></a> 
-                    	<a href="#"><img src="${pageContext.request.contextPath}/imag/start_task_icon.png" id="task2Start" width="60" height="50" /></a>
-                    	<a href="#" id=""><img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" id="task2Stop" width="60" height="50" /></a>
+                        <a href="" onclick="jump2Servlet(2,'EditTaskUIServlet'); return false">
+                        	<img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" id="task2Edit" width="60" height="50" />
+                        </a>
+                        <a href="" onclick="jump2Servlet(2,'RemoveTaskServlet'); return false">
+                        	<img src="${pageContext.request.contextPath}/imag/delete_icon.png" id="task2Delete" width="60" height="50" />
+                        </a> 
+                    	<a href="" onclick="jump2Servlet(2,'StartTaskServlet'); return false">
+                    		<img src="${pageContext.request.contextPath}/imag/start_task_icon.png" id="task2Start" width="60" height="50" />
+                    	</a>
+                    	<a href="" onclick="jump2Servlet(2,'PauseTaskServlet'); return false">
+                    		<img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" id="task2Stop" width="60" height="50" />
+                    	</a>
                     </div>
                     <span id="taskTimetip">
                     	<font id="task2CreateTime">created about 2 hours ago</font>
@@ -222,12 +283,18 @@ function nextPage() {
                     <span id="task3ThisInfo" style="font-size:12px;position:absolute;top:95%;left:16%; text-align:center;width:80px;">MyDarlinghh send a weibo:"hello world"</span>
                     <span id="task3ThatInfo" style="font-size:12px;position:absolute;top:95%;left:45%;text-align:center;width:80px;">send a mail to nj_txh@163.com </span>
                     <div id="edit_icons">
-                        <a href="">
+                        <a href="" onclick="jump2Servlet(3,'EditTaskUIServlet'); return false">
                         	<img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" id="task3Edit" width="60" height="50" />
                         </a>
-                        <a href="#"><img src="${pageContext.request.contextPath}/imag/delete_icon.png" id="task3Delete" width="60" height="50" /></a>
-                      	<a href="#"><img src="${pageContext.request.contextPath}/imag/start_task_icon.png" id="task3Start" width="60" height="50" /></a>
-                    	<a href="#" id=""><img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" id="task3Stop" width="60" height="50" /></a>
+                        <a href="" onclick="jump2Servlet(3,'RemoveTaskServlet'); return false">
+                        	<img src="${pageContext.request.contextPath}/imag/delete_icon.png" id="task3Delete" width="60" height="50" />
+                        </a>
+                      	<a href="" onclick="jump2Servlet(3,'StartTaskServlet'); return false">
+                      		<img src="${pageContext.request.contextPath}/imag/start_task_icon.png" id="task3Start" width="60" height="50" />
+                      	</a>
+                    	<a href="" onclick="jump2Servlet(3,'PauseTaskServlet'); return false">
+                    		<img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" id="task3Stop" width="60" height="50" />
+                    	</a>
                     </div>
                       <span id="taskTimetip">
                       	<font id="task3CreateTime">created about 3 hours ago</font>
@@ -235,7 +302,7 @@ function nextPage() {
                 </div>
             </li>
         </ul>
-        <script>showTasks()</script>
+        <script>showTasks();</script>
     </div>
     <span id="page_tip">
         <button id="pre_page" onclick="lastPage()">上一页</button>
