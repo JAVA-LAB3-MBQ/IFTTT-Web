@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class User implements Serializable{
-	final static int superUserTypeValue = 0; // 管理员
-	final static int generalUserTypeValue = 1; // 普通用户
-	public final static int loggedIn = 2; //已登录
-	public final static int loggedOut = 3; //未登录
+<<<<<<< HEAD
+=======
+	public final static int superUserTypeValue = 0; // 管理员
+	public final static int generalUserTypeValue = 1; // 普通用户
+	public final static int loggedIn = 2; // 已登录
+	public final static int loggedOut = 3; // 未登录
+>>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 	
 	private String userId;
 	private String userName;

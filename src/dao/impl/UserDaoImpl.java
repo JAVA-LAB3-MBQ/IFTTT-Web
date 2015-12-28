@@ -1,11 +1,19 @@
 package dao.impl;
 
 import domain.User;
+import domain.DatabaseInfo;
 import dao.IUserDao;
 import java.sql.*;
 import java.lang.Integer;
 
-public class UserDaoImpl implements IUserDao{ 
+<<<<<<< HEAD
+=======
+public class UserDaoImpl implements IUserDao{
+	String url = "jdbc:mysql://localhost:3306/java" ;   
+    String username = DatabaseInfo.username ;    
+    String password = DatabaseInfo.password ; 
+   
+>>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 	public User find(String userName, String userPwd){
 		try{
 		    Class.forName("com.mysql.jdbc.Driver") ; 
@@ -35,6 +43,7 @@ public class UserDaoImpl implements IUserDao{
 	    return null;
 	}
 	
+<<<<<<< HEAD
 	public User find(String userId) {
 		// todo : get the user 
 		try{
@@ -63,6 +72,10 @@ public class UserDaoImpl implements IUserDao{
 		}
 		return null;
 	}
+=======
+	
+	
+>>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 	public void add(User user){
 		try{
 		    Class.forName("com.mysql.jdbc.Driver") ; 

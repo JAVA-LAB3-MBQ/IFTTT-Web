@@ -14,13 +14,17 @@ public class IfThisListenWeibo extends IfThis{
 	
 	public IfThisListenWeibo() {
 		this.setThisType(IfThis.thisListenWeiboTypeValue);
-		this.setThisInfo("if send a weibo: receiver-" + thisWeiboId);
+<<<<<<< HEAD
+=======
+		this.setThisInfo("Listen Weibo");
+>>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 	}
 	
-	public IfThisListenWeibo(String weiboId, String content, String t) {
+	public IfThisListenWeibo(String weiboId, String weiboPwd, String content, String t) {
 		setThisWeiboId(weiboId);
 		setThisWeiboContent(content);
 		setThisTimeLen(t);
+<<<<<<< HEAD
 		this.setThisType(IfThis.thisListenWeiboTypeValue);
 		this.setThisInfo("if send a weibo: receiver-" + thisWeiboId);
 	}
@@ -55,6 +59,12 @@ public class IfThisListenWeibo extends IfThis{
 	
 	public void setThisTimeLen(String l) {
 		thisTimeLen = l;
+=======
+		setThisWeiboPwd(weiboPwd);
+		
+		this.setThisType(IfThis.thisListenWeiboTypeValue);
+		this.setThisInfo("Listen Weibo: id-" + weiboId + ";content-" + content + ";time-" + t);
+>>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 	}
 	
 	public boolean ifHappened() {
@@ -72,5 +82,37 @@ public class IfThisListenWeibo extends IfThis{
 		// todo: call method about Db(in dao) to remove this from Db
 		dao.impl.ThisDaoImpl t = new dao.impl.ThisDaoImpl();
 		return t.removeThis(this);
+	}
+	
+	public String getThisWeiboId() {
+		return thisWeiboId;
+	}
+	
+	public void setThisWeiboId(String s) {
+		thisWeiboId = s;
+	}
+	
+	public String getThisWeiboContent() {
+		return thisWeiboContent;
+	}
+	
+	public void setThisWeiboContent(String c) {
+		thisWeiboContent = c;
+	}
+	
+	public String getThisTimeLen() {
+		return thisTimeLen;
+	}
+	
+	public void setThisTimeLen(String l) {
+		thisTimeLen = l;
+	}
+	
+	public String getThisWeiboPwd() {
+		return thisWeiboPwd;
+	}
+	
+	public void setThisWeiboPwd(String s) {
+		thisWeiboPwd = s;
 	}
 }

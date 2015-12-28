@@ -40,6 +40,13 @@ public abstract class IfThis {
 		thisInfo = i;
 	}
 	
+	public String getThisInfo() {
+		return thisInfo;
+	}
+	
+	public void setThisInfo(String i) {
+		thisInfo = i;
+	}
 	abstract public boolean ifHappened(); 
 	abstract public boolean add2Db(); 
 	abstract public boolean removeFromDb();

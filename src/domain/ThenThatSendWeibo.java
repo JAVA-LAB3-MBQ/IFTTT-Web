@@ -14,42 +14,22 @@ public class ThenThatSendWeibo extends ThenThat{
 
 	public ThenThatSendWeibo() {
 		this.setThatType(ThenThat.thatSendWeiboTypeValue);
+		this.setThatInfo("Send Weibo");
 	}
 	
 	public ThenThatSendWeibo(String userId, String weiboContent) {
 		// todo: get user's weiboId and accessToken, weibopwd
+<<<<<<< HEAD
 		thatWeiboContent = weiboContent;
-		try{
-		    Class.forName("com.mysql.jdbc.Driver") ; 
-		}
-		catch(ClassNotFoundException e){
-			e.printStackTrace();
-		    System.out.println("Driver Class Not Found, Loader Failure！");  //找不到驱动程序类 ，加载驱动失败
-		}  
-	    try{ 
-	    	Connection con =     
-	    			DriverManager.getConnection(domain.DatabaseInfo.url , domain.DatabaseInfo.username , domain.DatabaseInfo.password ) ; 
-	    
-	    	Statement statement = con.createStatement();
-	    	
-	    	String statementString1 = "select userWeiboId,userWeiboAccessToken,userWeiboPwd from User where userId = \"" + userId + "\";" ;
-	    	ResultSet res = 
-	    			statement.executeQuery(statementString1);
-    		
-	    	if(res.next()){
-	    		thatWeiboId = res.getString("userWeiboId");
-	    		thatWeiboAccessToken = res.getString("userWeiboAccessToken");
-	    		thatWeiboPwd = res.getString("userWeiboPwd");
-	    	}
-	     }
-	     catch(SQLException se){    
-	    	System.out.println("Connection to Database Failed！");    
-	    	se.printStackTrace() ;    
-	     } 
+=======
 		
 		this.setThatType(ThenThat.thatSendWeiboTypeValue);
-		this.setThatInfo("Send a weibo: WeiboId-" + thatWeiboId + ";content-" + thatWeiboContent);
-		
+		this.setThatInfo("Send Weibo: content-" + thatWeiboContent);
+	}
+	
+	public boolean doIt() {
+		// todo:
+		return false;
 	}
 	
 	public String getThatWeiboId(){

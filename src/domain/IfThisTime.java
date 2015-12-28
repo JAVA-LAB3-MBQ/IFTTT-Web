@@ -10,12 +10,17 @@ public class IfThisTime extends IfThis{
 	
 	public IfThisTime() {
 		this.setThisType(IfThis.thisTimeTypeValue);
+<<<<<<< HEAD
 		this.setThisInfo("if hit time: " + goalTime);
+=======
+		this.setThisInfo("Timing");
+>>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 	}
 	
 	public IfThisTime(String time) {
 		setGoalTime(time);	
 		this.setThisType(IfThis.thisTimeTypeValue);
+<<<<<<< HEAD
 		this.setThisInfo("if hit time: " + goalTime);
 	}
 	public IfThisTime(String thisId,String time) {
@@ -30,6 +35,9 @@ public class IfThisTime extends IfThis{
 	
 	public String getGoalTime() {
 		return goalTime;
+=======
+		this.setThisInfo(t);
+>>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 	}
 	
 	public boolean ifHappened() {
@@ -49,5 +57,15 @@ public class IfThisTime extends IfThis{
 		// todo: call method about Db(in dao) to remove this from Db
 		dao.impl.ThisDaoImpl t = new dao.impl.ThisDaoImpl();
 		return t.removeThis(this);
+	}
+	
+	
+	
+	public void setGoalTime(String t) {
+		goalTime = t;
+	}
+	
+	public String getGoalTime() {
+		return goalTime;
 	}
 }

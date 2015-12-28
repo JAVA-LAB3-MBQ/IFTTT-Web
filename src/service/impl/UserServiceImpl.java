@@ -7,6 +7,7 @@ import domain.Task;
 import domain.ThenThat;
 import domain.User;
 import service.IUserService;
+import util.WeiboAccessToken;
 import dao.impl.*;
 
 import java.sql.Connection;
@@ -51,7 +52,6 @@ public class UserServiceImpl implements IUserService {
      
     }
 	public User registerUser(User user)throws Exception{
-		
 		try{
 		    Class.forName("com.mysql.jdbc.Driver") ; 
 		}
@@ -82,14 +82,18 @@ public class UserServiceImpl implements IUserService {
 		return user;
 		
 	}
+	
 	public User loginUser(String userName, String userPwd){
 		UserDaoImpl t = new UserDaoImpl();
-		return t.find(userName, userPwd);
+		User user = t.find(userName, userPwd);
+		if(user != null) {
+			t.changeUserStatus(user.getId(), User.loggedIn); // from User.loggedOut to User.loggedIn
+		}
+		
+		return user;
 	}	
 	
 	public User getUserInfo(String uId) {
-	   // todo:
-	   // construct a user, Tasks and messages....can be null
 		UserDaoImpl udb = new UserDaoImpl();
 		User user = udb.find(uId);
 		
@@ -97,7 +101,6 @@ public class UserServiceImpl implements IUserService {
 	}
 	
 	public ArrayList<Task> getUserTasks(String userId) {
-		// todo: get tasks from the DataBase
 		TaskDaoImpl tdb = new TaskDaoImpl();
 		ArrayList<Task> tasks = tdb.getTasks(userId);
 		
@@ -105,10 +108,37 @@ public class UserServiceImpl implements IUserService {
 	}
 	
 	public User editUserInfo(String uId, String mail, String mailPwd, String weiboId, String weiboPwd) {
-		// todo: change user's information, using methods in dao
 		UserDaoImpl udb = new UserDaoImpl();
 		User user = udb.find(uId);
+		String new_access_token;
+		
+		// get a new weibo access_token ?
+		if(weiboId.equals(user.getUserWeiboId()) ) {
+			new_access_token = WeiboAccessToken.getAccessToken(weiboId, weiboPwd);
+		}
+		else {
+			new_access_token = WeiboAccessToken.refreshAccessToken(weiboId, weiboPwd);
+		}
+		
+		// don't change user's id, money, level score
+		// change user's information, constructing a new user
+		user.setUserEmailAddr(mail);
+		user.setUserEmailPwd(mailPwd);
+		user.setUserWeiboPwd(weiboId);
+		user.setUserWeiboPwd(weiboPwd);
+		user.setUserWeiboAccessToken(new_access_token);
+		
+		// remove old user
+		udb.remove(uId);
+		// add new user
+		udb.add(user);
 		
 		return user;
+	}
+	
+	public void signOut(String userId) {
+		// change user's status from loggedIn to loggedOut in database
+		UserDaoImpl udb = new UserDaoImpl();
+		udb.changeUserStatus(userId, User.loggedOut);
 	}
 }
