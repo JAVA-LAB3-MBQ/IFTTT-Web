@@ -10,7 +10,7 @@ public interface ITaskService {
 	
 	public Task editTask(String userId, String tId, String tName, IfThis this_, ThenThat that_);
 	
-	public Task removeTask(String userId, String taskId);
+	public boolean removeTask(String taskId);
 
     public boolean startTask(String taskId);
     

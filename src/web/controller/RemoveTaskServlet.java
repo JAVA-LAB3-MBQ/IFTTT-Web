@@ -39,7 +39,7 @@ public class RemoveTaskServlet extends HttpServlet {
 				
 		// pause it
 		TaskServiceImpl tservice = new TaskServiceImpl();
-		tservice.removeTask(userId, taskId);
+		tservice.removeTask(taskId);
 			    
 		// construct formbean
 		ArrayList<Task> tasks = (new UserServiceImpl()).getUserTasks(userId);

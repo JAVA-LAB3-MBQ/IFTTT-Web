@@ -15,17 +15,20 @@ public class Task {
 	private String thatIconPath;
 	
 	private String createTime;
-	
 	private int taskStatus;
-
+	
+	private String thisInfo;
+	private String thatInfo;
+	
 	public Task(){
 		createTime = (DateStringUtil.date2String(new Date()));
 	}
-	public Task(String userId, String taskId, String taskName, String thisID, String thatId, int thisType, int thatType){
+	public Task(String userId, String taskId, String taskName, String thisId, String thatId, int thisType, int thatType){
 		this.userId = userId;
 		this.taskId = taskId;
-		this.taskId = taskId;
+		this.taskName = taskName;
 		this.thisId = thisId;
+		this.thatId = thatId;
 		this.thisType = thisType;
 		this.thatType = thatType;
 		createTime = DateStringUtil.date2String(new Date());
@@ -33,14 +36,58 @@ public class Task {
 	public Task(String userId, String taskId, String taskName, String thisId, String thatId, int thisType, int thatType, String thisIconPath, String thatIconPath, String createTime, int taskStatus){
 		this.userId = userId;
 		this.taskId = taskId;
-		this.taskId = taskId;
+		this.taskName = taskName;
 		this.thisId = thisId;
+		this.thatId = thatId;
 		this.thisType = thisType;
 		this.thatType = thatType;
 		this.thisIconPath = thisIconPath;
 		this.thatIconPath = thatIconPath;
 		this.createTime = createTime;
 		this.taskStatus = taskStatus;
+		createTime = DateStringUtil.date2String(new Date());
+	}
+	public Task(String userId, String taskId, String taskName, String thisId, String thatId, int thisType, int thatType, String thisIconPath, String thatIconPath, String createTime, int taskStatus, String thisInfo, String thatInfo){
+		this.userId = userId;
+		this.taskId = taskId;
+		this.taskName = taskName;
+		this.thisId = thisId;
+		this.thatId = thatId;
+		this.thisType = thisType;
+		this.thatType = thatType;
+		this.thisIconPath = thisIconPath;
+		this.thatIconPath = thatIconPath;
+		this.createTime = createTime;
+		this.taskStatus = taskStatus;
+		this.thisInfo = thisInfo;
+		this.thatInfo = thatInfo;
+		createTime = DateStringUtil.date2String(new Date());
+	}
+	public Task(String userId, String tId, String tName, IfThis this_, ThenThat that_){
+		this.userId = userId;
+		this.taskId = tId;
+		this.taskName = tName;
+		this.thisId = this_.getThisId();
+		this.thatId = that_.getThatId();
+		this.thisType = this_.getThisType();
+		this.thatType = that_.getThatType();
+		this.thisIconPath = this_.getThisIconPath();
+		this.thatIconPath = that_.getThatIconPath();
+		this.thisInfo = this_.getThisInfo();
+		this.thatInfo = that_.getThatInfo();
+	}
+	public Task(String userId, String taskId, String taskName, IfThis this_, ThenThat that_, String thisIconPath, String thatIconPath, String thisInfo, String thatInfo){
+		this.userId = userId;
+		this.taskId = taskId;
+		this.taskName = taskName;
+		this.thisId = this_.getThisId();
+		this.thatId = that_.getThatId();
+		this.thisType = this_.getThisType();
+		this.thatType = that_.getThatType();
+		this.thisIconPath = thisIconPath;
+		this.thatIconPath = thatIconPath;
+		this.thisInfo = thisInfo;
+		this.thatInfo = thatInfo;
 	}
 	public String getUserId() {
 		return userId;
@@ -75,11 +122,20 @@ public class Task {
 	public int getTaskStatus(){
 		return taskStatus;
 	}
+	public String getThisInfo(){
+		return thisInfo;
+	}
+	public String getThatInfo(){
+		return thatInfo;
+	}
 	public void setUserId(String uid) {
 		userId = uid;
 	}
 	public void setTaskId(String tid){
 		taskId = tid;
+	}
+	public void setTaskName(String t){
+		taskName = t;
 	}
 	public void setThisId(String thisId){
 		this.thisId = thisId;
@@ -92,5 +148,20 @@ public class Task {
 	}
 	public void setThatType(int t){
 		thatType = t;
+	}
+	public void setThisInfo(String i){
+		thisInfo = i;
+	}
+	public void setThatInfo(String i){
+		thatInfo = i;
+	}
+	public void setThisIconPath(String p){
+		thisIconPath = p;
+	}
+	public void setThatIconPath(String p){
+		thatIconPath = p;
+	}
+	public void setTaskStatus(int s){
+		taskStatus = s;
 	}
 }

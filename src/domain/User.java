@@ -6,6 +6,8 @@ import java.util.ArrayList;
 public class User implements Serializable{
 	final static int superUserTypeValue = 0; // 管理员
 	final static int generalUserTypeValue = 1; // 普通用户
+	public final static int loggedIn = 2; //已登录
+	public final static int loggedOut = 3; //未登录
 	
 	private String userId;
 	private String userName;
@@ -23,13 +25,78 @@ public class User implements Serializable{
 	private String userWeiboAccessToken;
 	private String userWeiboPwd;
 	
+	public User(String userId, String userName, String userPwd, String registerTime, 
+			int userLevel, int userScore, int userRole, int userStatus, int userMoney, 
+			String userEmailAddr, String userEmailPwd, String userWeiboId, String userWeiboAccessToken, String userWeiboPwd) 
+	{ 
+		this.userId = userId;
+		this.userName = userName;
+		this.userPwd = userPwd;
+		this.registerTime = registerTime;
+		this.userLevel = userLevel;
+		this.userScore = userScore;
+		this.userRole = userRole;
+		this.userStatus = userStatus;
+		this.userMoney = userMoney;
+		this.userEmailAddr = userEmailAddr;
+		this.userEmailPwd = userEmailPwd;
+		this.userWeiboId = userWeiboId;
+		this.userWeiboAccessToken = userWeiboAccessToken;
+		this.userWeiboPwd = userWeiboPwd;
+	}
+	
 	public User(String name, String pwd){
 		this.userName = name;
 		this.userPwd = pwd;
 	}
+
+	public User(String id, String name, String pwd){
+		this.userId = id;
+		this.userName = name;
+		this.userPwd = pwd;
+	}
 	
-	public User() { }
+	public User(String id, String name, String pwd, String registerTime){
+		this.userId = id;
+		this.userName = name;
+		this.userPwd = pwd;
+		this.registerTime = registerTime;
+	}
+	public User(){
+		
+	}
 	
+	public String getUserId(){
+		return userId;
+	}
+	
+	public String getName(){
+		return userName;
+	}
+	
+	public String getPwd(){
+		return userPwd;
+	}
+	
+	public String getRegisterTime(){
+		return registerTime;
+	}
+	
+	public void setId(String id){
+		this.userId = id;
+	}
+	
+	public void setName(String name){
+		this.userName = name;
+	}
+	
+	public void setPwd(String pwd){
+		this.userPwd = pwd;
+	}
+	
+	public void setRegisterTime(String registerTime){
+		this.registerTime = registerTime;
+	}
 	public int getUserLevel() {
 		return userLevel;
 	}
@@ -108,50 +175,5 @@ public class User implements Serializable{
 	
 	public void setUserWeiboPwd(String pwd) {
 		userWeiboPwd = pwd;
-	}
-	
-	public User(String id, String name, String pwd){
-		this.userId = id;
-		this.userName = name;
-		this.userPwd = pwd;
-	}
-	
-	public User(String id, String name, String pwd, String registerTime){
-		this.userId = id;
-		this.userName = name;
-		this.userPwd = pwd;
-		this.registerTime = registerTime;
-	}
-	
-	public void setId(String id){
-		this.userId = id;
-	}
-	
-	public void setName(String name){
-		this.userName = name;
-	}
-	
-	public void setPwd(String pwd){
-		this.userPwd = pwd;
-	}
-	
-	public void setRegisterTime(String registerTime){
-		this.registerTime = registerTime;
-	}
-	
-	public String getId(){
-		return userId;
-	}
-	
-	public String getName(){
-		return userName;
-	}
-	
-	public String getPwd(){
-		return userPwd;
-	}
-	
-	public String getRegisterTime(){
-		return registerTime;
 	}
 }

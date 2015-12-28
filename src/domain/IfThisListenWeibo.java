@@ -14,14 +14,23 @@ public class IfThisListenWeibo extends IfThis{
 	
 	public IfThisListenWeibo() {
 		this.setThisType(IfThis.thisListenWeiboTypeValue);
+		this.setThisInfo("if send a weibo: receiver-" + thisWeiboId);
 	}
 	
 	public IfThisListenWeibo(String weiboId, String content, String t) {
 		setThisWeiboId(weiboId);
 		setThisWeiboContent(content);
 		setThisTimeLen(t);
-		
 		this.setThisType(IfThis.thisListenWeiboTypeValue);
+		this.setThisInfo("if send a weibo: receiver-" + thisWeiboId);
+	}
+	public IfThisListenWeibo(String thisId, String weiboId, String content, String t) {
+		setThisId(thisId);
+		setThisWeiboId(weiboId);
+		setThisWeiboContent(content);
+		setThisTimeLen(t);
+		this.setThisType(IfThis.thisListenWeiboTypeValue);
+		this.setThisInfo("if send a weibo: receiver-" + thisWeiboId);
 	}
 	
 	public String getThisWeiboId() {
@@ -55,53 +64,13 @@ public class IfThisListenWeibo extends IfThis{
 	
 	public boolean add2Db() {
 		// todo: call method about Db(in dao) to insert this to Db
-		try{
-		    Class.forName("com.mysql.jdbc.Driver") ; 
-		}
-		catch(ClassNotFoundException e){
-			e.printStackTrace();
-		    System.out.println("Driver Class Not Found, Loader Failure！");  //找不到驱动程序类 ，加载驱动失败
-		}  
-	    try{ 
-	    	Connection con =     
-	    			DriverManager.getConnection(domain.DatabaseInfo.url , domain.DatabaseInfo.username , domain.DatabaseInfo.password ) ; 
-	    
-	    	Statement statement = con.createStatement();
-	    	
-	    	String statementString = "insert into IfThisListenWeibo values(\"" + thisWeiboId + "\",\"" + thisWeiboContent + "\",\"" + thisTimeLen + "\");" ;
-	    	statement.executeUpdate(statementString);
-	     }
-	     catch(SQLException se){    
-	    	System.out.println("Connection to Database Failed！");    
-	    	se.printStackTrace() ;    
-	     }  
-		return true;
+		dao.impl.ThisDaoImpl t = new dao.impl.ThisDaoImpl();
+		return t.addThis(this);
 	}
 	
 	public boolean removeFromDb() {
 		// todo: call method about Db(in dao) to remove this from Db
-		try{
-		    Class.forName("com.mysql.jdbc.Driver") ; 
-		}
-		catch(ClassNotFoundException e){
-			e.printStackTrace();
-		    System.out.println("Driver Class Not Found, Loader Failure！");  //找不到驱动程序类 ，加载驱动失败
-		}  
-	    try{ 
-	    	Connection con =     
-	    			DriverManager.getConnection(domain.DatabaseInfo.url , domain.DatabaseInfo.username , domain.DatabaseInfo.password ) ; 
-	    
-	    	Statement statement = con.createStatement();
-	    	
-	    	String statementString = "delete "
-	    			+ "from IfThisListenWeibo "
-	    			+ "where thisWeiboId = \"" + thisWeiboId + "\"";
-	    	statement.executeUpdate(statementString);
-	     }
-	     catch(SQLException se){    
-	    	System.out.println("Connection to Database Failed！");    
-	    	se.printStackTrace() ;    
-	     }  
-		return true;
+		dao.impl.ThisDaoImpl t = new dao.impl.ThisDaoImpl();
+		return t.removeThis(this);
 	}
 }

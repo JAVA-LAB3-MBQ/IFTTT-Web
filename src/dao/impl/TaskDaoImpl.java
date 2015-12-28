@@ -16,35 +16,39 @@ public class TaskDaoImpl implements ITaskDao {
 					DriverManager.getConnection(domain.DatabaseInfo.url,domain.DatabaseInfo.username,domain.DatabaseInfo.password);
 			Statement statement = con.createStatement();
 			String update = "insert into task values(\""+t.getUserId()+"\",\""+t.getTaskId()+"\",\""+t.getTaskName()+"\",\""+t.getThisId()+"\",\""+t.getThatId()
-				+"\",\""+t.getThisType()+"\",\""+t.getThatType()+"\",\""
+				+"\","+t.getThisType()+","+t.getThatType()+",\""
 				+t.getThisIconPath()+"\",\"" + t.getThatIconPath() +"\",\""
-				+ t.getCreateTime()+"\""+t.getTaskStatus()+"\"";
+				+ t.getCreateTime()+"\","+t.getTaskStatus() + ",\"" + t.getThisInfo() + "\",\"" + t.getThatInfo() + "\");";
 			statement.executeUpdate(update);
+			con.close();
+			return true;
 		}
 		catch(ClassNotFoundException e){
-			
+			e.printStackTrace();
 		}
 		catch(SQLException ee){
-			
+			ee.printStackTrace();
 		}
 		return false;
 	}
 	
-	public boolean removeTask(Task t) {
+	public boolean removeTask(String taskId) {
 		// todo : remove the Task from db
 		try{
-			Class.forName("com.sql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 			Connection con =
 					DriverManager.getConnection(DatabaseInfo.url, DatabaseInfo.username, DatabaseInfo.password);
 			Statement statement = con.createStatement();
-			String update = "delete * from task where taskId = \"" + t.getTaskId() + "\"";
+			String update = "delete from task where taskId = \"" + taskId + "\"";
 			statement.executeUpdate(update);
+			con.close();
+			return true;
 		}
 		catch(ClassNotFoundException e){
-			
+			e.printStackTrace();
 		}
 		catch(SQLException ee){
-			
+			ee.printStackTrace();
 		}
 		return false;
 	}
@@ -53,14 +57,15 @@ public class TaskDaoImpl implements ITaskDao {
 		// todo : get the tasks of the user together
 		ArrayList<Task> tasks = new ArrayList<Task>();
 		try{
-			Class.forName("com.sql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 			Connection con =
 					DriverManager.getConnection(DatabaseInfo.url, DatabaseInfo.username, DatabaseInfo.password);
 			Statement statement = con.createStatement();
-			String query = "select * from task";
+			String query = "select * from task where userId = \"" + userId + "\"";
 			ResultSet res = statement.executeQuery(query);
 			while(res.next()){
-				Task t = new Task(res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getInt(6),res.getInt(7),res.getString(8),res.getString(9),res.getString(10),res.getInt(11));
+				Task t = new Task(res.getString("userId"),res.getString("taskId"),res.getString("taskName"),res.getString("thisId"),res.getString("thatId"),res.getInt("thisType"),res.getInt("thatType"),res.getString("thisIconPath"),res.getString("thatIconPath"),res.getString("createTime"),res.getInt("taskStatus")
+						,res.getString("thisInfo"),res.getString("thatInfo"));
 				tasks.add(t);
 			}
 			return tasks;
@@ -73,38 +78,65 @@ public class TaskDaoImpl implements ITaskDao {
 		}
 		return null; 
 	}
+	public Task getATask(String taskId) {
+		// todo :
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con =
+					DriverManager.getConnection(DatabaseInfo.url, DatabaseInfo.username, DatabaseInfo.password);
+			Statement statement = con.createStatement();
+			String query = "select * from task where taskId = \"" + taskId + "\";";
+			ResultSet res = statement.executeQuery(query);
+			if(res.next()){
+				Task t = new Task(res.getString("userId"),res.getString("taskId"),res.getString("taskName"),res.getString("thisId"),res.getString("thatId"),res.getInt("thisType"),res.getInt("thatType"),res.getString("thisIconPath"),res.getString("thatIconPath"),res.getString("createTime"),res.getInt("taskStatus")
+						,res.getString("thisInfo"),res.getString("thatInfo"));
+				return t;
+			}
+			con.close();
+		}
+		catch(ClassNotFoundException e){
+			e.printStackTrace();
+		}
+		catch(SQLException ee){
+			ee.printStackTrace();
+		}
+		return null;
+	}
 	
 	public boolean startTask(String taskId) {
 		// todo: change the task's status
 		try{
-			Class.forName("com.sql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 			Connection con =
 					DriverManager.getConnection(DatabaseInfo.url, DatabaseInfo.username, DatabaseInfo.password);
 			Statement statement = con.createStatement();
 			statement.executeUpdate("SET SQL_SAFE_UPDATES = 0");
-			String update = "update task set taskStatus = 1 where taskId = \"" + taskId + "\"";
+			String update = "update task set taskStatus = " + Task.startedStatus + " where taskId = \"" + taskId + "\"";
+			System.out.println(update);
 			statement.executeUpdate(update);
+			con.close();
 			return true;
 		}
 		catch(ClassNotFoundException e){
-			return false;
+			e.printStackTrace();
 		}
 		catch(SQLException ee){
-			return false;
-			
+			ee.printStackTrace();
 		}
+		return false;
 	}
 	
 	public boolean pauseTask(String taskId) {
 		// todo: change the task's status
 		try{
-			Class.forName("com.sql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 			Connection con =
 					DriverManager.getConnection(DatabaseInfo.url, DatabaseInfo.username, DatabaseInfo.password);
 			Statement statement = con.createStatement();
 			statement.executeUpdate("SET SQL_SAFE_UPDATES = 0");
-			String update = "update task set taskStatus = 0 where taskId = \"" + taskId + "\"";
+			String update = "update task set taskStatus = " + Task.pausedStatus + " where taskId = \"" + taskId + "\"";
 			statement.executeUpdate(update);
+			con.close();
 			return true;
 		}
 		catch(ClassNotFoundException e){

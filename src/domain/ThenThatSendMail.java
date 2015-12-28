@@ -28,13 +28,41 @@ public class ThenThatSendMail extends ThenThat{
 		this.setThatType(ThenThat.thatSendMailTypeValue);
 	}
 	
-	public ThenThatSendMail(String userId, String did, String c) {
+	public ThenThatSendMail(String userId, String destEmailId, String mailContent) {
 		// todo : get user's email and id
-		thatSrcEmailId = userId;
-		thatDestEmailId = did;
-		thatEmailContent = c;
+	
+		try{
+		    Class.forName("com.mysql.jdbc.Driver") ; 
+		}
+		catch(ClassNotFoundException e){
+			e.printStackTrace();
+		    System.out.println("Driver Class Not Found, Loader Failure！");  //找不到驱动程序类 ，加载驱动失败
+		}  
+	    try{ 
+	    	Connection con =     
+	    			DriverManager.getConnection(domain.DatabaseInfo.url , domain.DatabaseInfo.username , domain.DatabaseInfo.password ) ; 
+	    
+	    	Statement statement = con.createStatement();
+	    	
+	    	String statementString1 = "select userEmailAddr,userEmailPwd from User where userId = \"" + userId + "\";" ;
+	    	ResultSet res = 
+	    			statement.executeQuery(statementString1);
+    		
+	    	if(res.next()){
+	    		thatSrcEmailId = res.getString("userEmailAddr");
+	    		thatSrcEmailPwd = res.getString("userEmailPwd");
+	    	}
+	     }
+	     catch(SQLException se){    
+	    	System.out.println("Connection to Database Failed！");    
+	    	se.printStackTrace() ;    
+	     } 
+		thatDestEmailId = destEmailId;
+		thatEmailContent = mailContent;
 		
 		this.setThatType(ThenThat.thatSendMailTypeValue);
+		this.setThatInfo("Send a mail: receiver-" + thatDestEmailId + ";content-" + thatEmailContent);
+		
 	}
 	public ThenThatSendMail(String thatSrcEmailId, String thatSrcEmailPwd, String thatDestEmailId, String thatEmailContent){
 		this.thatSrcEmailId = thatSrcEmailId;
@@ -43,7 +71,38 @@ public class ThenThatSendMail extends ThenThat{
 		this.thatEmailContent = thatEmailContent;
 		this.setThatType(ThenThat.thatSendMailTypeValue);
 	}
-	
+	public ThenThatSendMail(String thatId, String thatSrcEmailId, String thatSrcEmailPwd, String thatDestEmailId, String thatEmailContent){
+		setThatId(thatId);
+		this.thatSrcEmailId = thatSrcEmailId;
+		this.thatSrcEmailPwd = thatSrcEmailPwd;
+		this.thatDestEmailId = thatDestEmailId;
+		this.thatEmailContent = thatEmailContent;
+		this.setThatType(ThenThat.thatSendMailTypeValue);
+	}
+	public String getThatSrcEmailId(){
+		return thatSrcEmailId;
+	}
+	public String getThatSrcEmailPwd(){
+		return thatSrcEmailPwd;
+	}
+	public String getThatDestEmailId(){
+		return thatDestEmailId;
+	}
+	public String getThatEmailContent(){
+		return thatEmailContent;
+	}
+	public void setThatSrcEmailId(String thatSrcEmailId) {
+		this.thatSrcEmailId = thatSrcEmailId;
+	}
+	public void setThatSrcEmailPwd(String thatSrcEmailPwd) {
+		this.thatSrcEmailPwd = thatSrcEmailPwd;
+	}
+	public void setThatDestEmailId(String thatDestEmailId){
+		this.thatDestEmailId = thatDestEmailId;
+	}
+	public void setThatEmailContent(String thatEmailContent){
+		this.thatEmailContent = thatEmailContent;
+	}
 	public boolean doIt(){
 		// todo:
 		// get host by separating the 'from'
@@ -89,63 +148,13 @@ public class ThenThatSendMail extends ThenThat{
 	
 	public boolean add2Db() {
 		// todo: call method about Db(in dao) to insert this to Db
-		try{
-		    Class.forName("com.mysql.jdbc.Driver") ; 
-		}
-		catch(ClassNotFoundException e){
-			e.printStackTrace();
-		    System.out.println("Driver Class Not Found, Loader Failure！");  //找不到驱动程序类 ，加载驱动失败
-		}  
-	    try{ 
-	    	Connection con =     
-	    			DriverManager.getConnection(domain.DatabaseInfo.url , domain.DatabaseInfo.username , domain.DatabaseInfo.password ) ; 
-	    
-	    	Statement statement = con.createStatement();
-//	    	String query = "select * from ThenThatSendMail;";
-//	    	ResultSet res = statement.executeQuery(query);
-//	    	while(res.next()){
-//	    		if(thatSrcEmailId.equals(res.getString(1)) && thatSrcEmailPwd.equals(res.getString(2)) && thatDestEmailId.equals(res.getString(3)) && thatEmailContent.equals(res.getString(4))){
-//	    			System.out.println("一样");
-//	    			return false;//如果像数据库插入了重复内容，返回false
-//	    		}
-//	    	}
-    	
-	    	String update = "insert into ThenThatSendMail values(\"" + thatSrcEmailId + "\",\"" + thatSrcEmailPwd + "\",\"" + thatDestEmailId + "\",\"" + thatEmailContent + "\");" ;
-	    	statement.executeUpdate(update);
-	     }
-	     catch(SQLException se){    
-	    	System.out.println("Connection to Database Failed！");    
-	    	se.printStackTrace();    
-	     }  
-		return true;
+		dao.impl.ThatDaoImpl t = new dao.impl.ThatDaoImpl();
+		return t.addThat(this);
 	}
 	
 	public boolean removeFromDb() {
 		// todo: call method about Db(in dao) to remove this from Db
-		try{
-		    Class.forName("com.mysql.jdbc.Driver") ; 
-		}
-		catch(ClassNotFoundException e){
-			e.printStackTrace();
-		    System.out.println("Driver Class Not Found, Loader Failure！");  //找不到驱动程序类 ，加载驱动失败
-		}  
-	    try{ 
-	    	Connection con =     
-	    			DriverManager.getConnection(domain.DatabaseInfo.url , domain.DatabaseInfo.username , domain.DatabaseInfo.password ) ; 
-	    
-	    	Statement statement = con.createStatement();
-	    	String queryString = "select * from ThenThatSendMail where thatSrcEmailId = " + "\"" + thatSrcEmailId + "\" && thatDestEmailId = " + "\"" + thatDestEmailId + "\" && thatEmailContent = " + thatEmailContent;
-	    	if(statement.executeQuery(queryString) == null)
-	    		return false;
-	    	String statementString = "delete "
-	    			+ "from ThenThatSendMail "
-	    			+ "where thatSrcEmailId = " + "\"" + thatSrcEmailId + "\" && thatDestEmailId = " + "\"" + thatDestEmailId + "\" && thatEmailContent = " + thatEmailContent;
-	    	statement.executeUpdate(statementString);
-	     }
-	     catch(SQLException se){    
-	    	System.out.println("Connection to Database Failed！");    
-	    	se.printStackTrace() ;    
-	     }  
-		return true;
+		dao.impl.ThatDaoImpl t = new dao.impl.ThatDaoImpl();
+		return t.removeThat(this);
 	}
 }

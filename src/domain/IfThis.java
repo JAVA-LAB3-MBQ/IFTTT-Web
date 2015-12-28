@@ -8,6 +8,7 @@ public abstract class IfThis {
 	private String thisId;
 	private int thisType;
 	private String thisIconPath;
+	private String thisInfo;
 	
 	public String getThisId() {
 		return thisId;
@@ -31,6 +32,12 @@ public abstract class IfThis {
 	
 	public void setThisIconPath(String iconp) {
 		thisIconPath = iconp;
+	}
+	public String getThisInfo(){
+		return thisInfo;
+	}
+	public void setThisInfo(String i){
+		thisInfo = i;
 	}
 	
 	abstract public boolean ifHappened(); 
