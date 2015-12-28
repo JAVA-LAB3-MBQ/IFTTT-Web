@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="C:/Program Files (x86)/Apache Software Foundation/Tomcat 8.0/lib/tomcat-api.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files (x86)/Apache Software Foundation/Tomcat 8.0/lib/jsp-api.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="D:/1大三上/Java程序设计/javamail-1.4.5/mail.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

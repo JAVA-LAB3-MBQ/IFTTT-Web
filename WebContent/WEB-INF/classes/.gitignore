@@ -1,5 +1,6 @@
-/dao/
 /domain/
 /service/
-/util/
+/dao/
 /web/
+/util/
+/thread/
