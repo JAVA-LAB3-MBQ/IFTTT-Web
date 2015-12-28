@@ -26,10 +26,17 @@ public class EditTaskUIServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    // test
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	// get userId, selectedTask
+    	String userId = request.getParameter("userId");
+    	String taskId = request.getParameter("taskId");
+    	System.out.println("editTaskUIS " + userId + " " + taskId);
+    }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	/*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// get userId, selectedTask
 		String userId = request.getParameter("userId");
 		String taskId = request.getParameter("taskId");
@@ -44,7 +51,7 @@ public class EditTaskUIServlet extends HttpServlet {
 		
 		// jump to EditTask.jsp
 		request.getRequestDispatcher("/EditTask.jsp").forward(request, response);
-	}
+	}*/
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

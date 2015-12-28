@@ -119,4 +119,7 @@ public class Task {
 	public void setTaskStatus(int st) {
 		taskStatus = st;
 	}
+	public void setTaskName(String s) {
+		taskName = s;
+	}
 }

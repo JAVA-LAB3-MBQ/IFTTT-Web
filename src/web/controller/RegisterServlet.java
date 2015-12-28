@@ -59,7 +59,12 @@ public class RegisterServlet extends HttpServlet {
 		    System.out.println("Register Servlet " + user.getName());
 		    user.setId(IdGeneratorUtil.makeId()); // user's id
 		    user.setRegisterTime(DateStringUtil.date2String(new Date())); // current time
-		
+		    user.setUserLevel(1);
+		    user.setUserRole(User.generalUserTypeValue);
+		    user.setUserScore(10);
+		    user.setUserMoney(100);
+		    user.setUserStatus(User.loggedOut);
+		    
 		    // registering an user	
 		    IUserService service = new UserServiceImpl();
 		    user = service.registerUser(user);
