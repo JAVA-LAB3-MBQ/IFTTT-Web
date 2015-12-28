@@ -33,6 +33,12 @@ public abstract class IfThis {
 	public void setThisIconPath(String iconp) {
 		thisIconPath = iconp;
 	}
+	public String getThisInfo(){
+		return thisInfo;
+	}
+	public void setThisInfo(String i){
+		thisInfo = i;
+	}
 	
 	public String getThisInfo() {
 		return thisInfo;

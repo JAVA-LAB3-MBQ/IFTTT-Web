@@ -2,6 +2,7 @@ package domain;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -16,9 +17,11 @@ public class ThenThatSendWeibo extends ThenThat{
 		this.setThatInfo("Send Weibo");
 	}
 	
-	public ThenThatSendWeibo(String userId, String c) {
+	public ThenThatSendWeibo(String userId, String weiboContent) {
 		// todo: get user's weiboId and accessToken, weibopwd
-		thatWeiboContent = c;
+<<<<<<< HEAD
+		thatWeiboContent = weiboContent;
+=======
 		
 		this.setThatType(ThenThat.thatSendWeiboTypeValue);
 		this.setThatInfo("Send Weibo: content-" + thatWeiboContent);
@@ -29,53 +32,45 @@ public class ThenThatSendWeibo extends ThenThat{
 		return false;
 	}
 	
+	public String getThatWeiboId(){
+		return thatWeiboId;
+	}
+	public String getThatWeiboAccessToken(){
+		return thatWeiboAccessToken;
+	}
+	public String getThatWeiboPwd(){
+		return thatWeiboPwd;
+	}
+	public String getThatWeiboContent(){
+		return thatWeiboContent;
+	}
+	
+	public void setThatWeiboId(String thatWeiboId){
+		this.thatWeiboId = thatWeiboId;
+	}
+	public void setThatWeiboAccessToken(String thatWeiboAccessToken){
+		this.thatWeiboAccessToken = thatWeiboAccessToken;
+	}
+	public void setThatWeiboPwd(String thatWeiboPwd){
+		this.thatWeiboPwd = thatWeiboPwd;
+	}
+	public void setThatWeiboContent(String thatWeiboContent){
+		this.thatWeiboContent = thatWeiboContent;
+	}
+	public boolean doIt() {
+		// todo:
+		return false;
+	}
+	
 	public boolean add2Db() {
 		// todo: call method about Db(in dao) to insert this to Db
-		try{
-		    Class.forName("com.mysql.jdbc.Driver") ; 
-		}
-		catch(ClassNotFoundException e){
-			e.printStackTrace();
-		    System.out.println("Driver Class Not Found, Loader Failure!");  //找不到驱动程序类 ，加载驱动失败
-		}  
-	    try{ 
-	    	Connection con =     
-	    			DriverManager.getConnection(domain.DatabaseInfo.url , domain.DatabaseInfo.username , domain.DatabaseInfo.password ) ; 
-	    
-	    	Statement statement = con.createStatement();
-	    	
-	    	String update = "insert into ThenThatSendMail values( " + thatWeiboId + "," + thatWeiboAccessToken + "," + thatWeiboPwd + "," + thatWeiboContent + ");" ;
-	    	statement.executeUpdate(update);
-	     }
-	     catch(SQLException se){    
-	    	System.out.println("Connection to Database Failed!");    
-	    	se.printStackTrace() ;    
-	     }  
-		return true;
+		dao.impl.ThatDaoImpl t = new dao.impl.ThatDaoImpl();
+		return t.addThat(this);
 	}
 	
 	public boolean removeFromDb() {
 		// todo: call method about Db(in dao) to remove this from Db
-		try{
-			Class.forName("com.mysql.jdbc.Driver");
-		}
-		catch(ClassNotFoundException e){
-			e.printStackTrace();
-			System.out.println("Driver Class Not Found, Loader Failure!");
-		}
-		try{
-			Connection con =
-					DriverManager.getConnection(domain.DatabaseInfo.url, domain.DatabaseInfo.username, domain.DatabaseInfo.password);
-			Statement statement = con.createStatement();
-			String query = "select * from ThenThatSendMail where thatWeiboId = \"" + thatWeiboId + "\"" + " && thatWeiboPwd = " + "\"" + thatWeiboPwd + "\"" + " && thatWeiboContent = \"" + thatWeiboContent + "\"";
-			if(statement.executeQuery(query) == null)return false;
-			String statementString = "delete * from ThenThatSendMail where thatWeiboId = \"" + thatWeiboId + "\" && thatWeiboPwd = " + "\"" + thatWeiboPwd + "\"" + " && thatWeiboContent = \"" + thatWeiboContent + "\"" ;
-			statement.executeUpdate(statementString);
-		}
-		catch(SQLException se){
-			System.out.println("Connection to Database Failed!");
-			se.printStackTrace();
-		}
-		return true;
+		dao.impl.ThatDaoImpl t = new dao.impl.ThatDaoImpl();
+		return t.removeThat(this);
 	}
 }

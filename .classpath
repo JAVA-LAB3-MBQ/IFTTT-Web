@@ -8,6 +8,16 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/Apache Software Foundation/Tomcat 8.0/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/Apache Software Foundation/Tomcat 8.0/lib/tomcat-api.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/Apache Software Foundation/Tomcat 8.0/lib/jsp-api.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="D:/1大三上/Java程序设计/javamail-1.4.5/mail.jar"/>
+=======
 	<classpathentry kind="lib" path="E:/Java/weibo4j.jar"/>
+>>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

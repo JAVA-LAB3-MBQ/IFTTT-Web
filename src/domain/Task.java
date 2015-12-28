@@ -16,19 +16,25 @@ public class Task {
 	private String thisInfo, thatInfo;
 	
 	private String createTime;
-	
 	private int taskStatus;
-
+	
+	private String thisInfo;
+	private String thatInfo;
+	
 	public Task(){
 		createTime = (DateStringUtil.date2String(new Date()));
 		taskStatus = Task.pausedStatus;
 	}
+<<<<<<< HEAD
+=======
 	
+>>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 	public Task(String userId, String taskId, String taskName, String thisId, String thatId, int thisType, int thatType){
 		this.userId = userId;
 		this.taskId = taskId;
-		this.taskId = taskId;
+		this.taskName = taskName;
 		this.thisId = thisId;
+		this.thatId = thatId;
 		this.thisType = thisType;
 		this.thatType = thatType;
 		createTime = DateStringUtil.date2String(new Date());
@@ -37,14 +43,58 @@ public class Task {
 	public Task(String userId, String taskId, String taskName, String thisId, String thatId, int thisType, int thatType, String thisIconPath, String thatIconPath, String createTime, int taskStatus){
 		this.userId = userId;
 		this.taskId = taskId;
-		this.taskId = taskId;
+		this.taskName = taskName;
 		this.thisId = thisId;
+		this.thatId = thatId;
 		this.thisType = thisType;
 		this.thatType = thatType;
 		this.thisIconPath = thisIconPath;
 		this.thatIconPath = thatIconPath;
 		this.createTime = createTime;
 		this.taskStatus = taskStatus;
+		createTime = DateStringUtil.date2String(new Date());
+	}
+	public Task(String userId, String taskId, String taskName, String thisId, String thatId, int thisType, int thatType, String thisIconPath, String thatIconPath, String createTime, int taskStatus, String thisInfo, String thatInfo){
+		this.userId = userId;
+		this.taskId = taskId;
+		this.taskName = taskName;
+		this.thisId = thisId;
+		this.thatId = thatId;
+		this.thisType = thisType;
+		this.thatType = thatType;
+		this.thisIconPath = thisIconPath;
+		this.thatIconPath = thatIconPath;
+		this.createTime = createTime;
+		this.taskStatus = taskStatus;
+		this.thisInfo = thisInfo;
+		this.thatInfo = thatInfo;
+		createTime = DateStringUtil.date2String(new Date());
+	}
+	public Task(String userId, String tId, String tName, IfThis this_, ThenThat that_){
+		this.userId = userId;
+		this.taskId = tId;
+		this.taskName = tName;
+		this.thisId = this_.getThisId();
+		this.thatId = that_.getThatId();
+		this.thisType = this_.getThisType();
+		this.thatType = that_.getThatType();
+		this.thisIconPath = this_.getThisIconPath();
+		this.thatIconPath = that_.getThatIconPath();
+		this.thisInfo = this_.getThisInfo();
+		this.thatInfo = that_.getThatInfo();
+	}
+	public Task(String userId, String taskId, String taskName, IfThis this_, ThenThat that_, String thisIconPath, String thatIconPath, String thisInfo, String thatInfo){
+		this.userId = userId;
+		this.taskId = taskId;
+		this.taskName = taskName;
+		this.thisId = this_.getThisId();
+		this.thatId = that_.getThatId();
+		this.thisType = this_.getThisType();
+		this.thatType = that_.getThatType();
+		this.thisIconPath = thisIconPath;
+		this.thatIconPath = thatIconPath;
+		this.thisInfo = thisInfo;
+		this.thatInfo = thatInfo;
 	}
 	
 	public String getUserId() {
@@ -80,11 +130,20 @@ public class Task {
 	public int getTaskStatus(){
 		return taskStatus;
 	}
+	public String getThisInfo(){
+		return thisInfo;
+	}
+	public String getThatInfo(){
+		return thatInfo;
+	}
 	public void setUserId(String uid) {
 		userId = uid;
 	}
 	public void setTaskId(String tid){
 		taskId = tid;
+	}
+	public void setTaskName(String t){
+		taskName = t;
 	}
 	public void setThisId(String thisId){
 		this.thisId = thisId;
@@ -98,28 +157,6 @@ public class Task {
 	public void setThatType(int t){
 		thatType = t;
 	}
-	public String getThisInfo() {
-		return thisInfo;
-	}
-	public void setThisInfo(String info) {
-		thisInfo = info;
-	}
-	public String getThatInfo() {
-		return thatInfo;
-	}
-	public void setThatInfo(String info) {
-		thatInfo = info;
-	}
-	public void setThisIconPath(String p) {
-		thisIconPath = p;
-	}
-	public void setThatIconPath(String p) {
-		thatIconPath = p;
-	}
-	public void setTaskStatus(int st) {
-		taskStatus = st;
-	}
-	public void setTaskName(String s) {
-		taskName = s;
-	}
+<<<<<<< HEAD
+	
 }

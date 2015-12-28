@@ -31,6 +31,13 @@ public abstract class ThenThat {
 	public void setThatIconPath(String iconp) {
 		thatIconPath = iconp;
 	}
+	public String getThatInfo() {
+		return thatInfo;
+	}
+	
+	public void setThatInfo(String i) {
+		thatInfo = i;
+	}
 	
 	public String getThatInfo() {
 		return thatInfo;

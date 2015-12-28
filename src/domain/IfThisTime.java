@@ -10,75 +10,53 @@ public class IfThisTime extends IfThis{
 	
 	public IfThisTime() {
 		this.setThisType(IfThis.thisTimeTypeValue);
+<<<<<<< HEAD
+		this.setThisInfo("if hit time: " + goalTime);
+=======
 		this.setThisInfo("Timing");
+>>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 	}
 	
-	public IfThisTime(String t) {
-		setGoalTime(t);
-		
+	public IfThisTime(String time) {
+		setGoalTime(time);	
 		this.setThisType(IfThis.thisTimeTypeValue);
+<<<<<<< HEAD
+		this.setThisInfo("if hit time: " + goalTime);
+	}
+	public IfThisTime(String thisId,String time) {
+		setThisId(thisId);
+		setGoalTime(time);	
+		this.setThisType(IfThis.thisTimeTypeValue);
+		this.setThisInfo("if hit time: " + goalTime);
+	}
+	public void setGoalTime(String t) {
+		goalTime = t;
+	}
+	
+	public String getGoalTime() {
+		return goalTime;
+=======
 		this.setThisInfo(t);
+>>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 	}
 	
 	public boolean ifHappened() {
 		// todo:
 		String t = DateStringUtil.date2String(new Date());
-//		System.out.println(goalTime);
-//		System.out.println(t);
-//		System.out.println(goalTime.equals(t));
 		if(goalTime.equals(t))return true;
 		return false;
 	}
 	
 	public boolean add2Db() {
 		// todo: call method about Db(in dao) to insert this to Db
-		try{
-		    Class.forName("com.mysql.jdbc.Driver") ; 
-		}
-		catch(ClassNotFoundException e){
-			e.printStackTrace();
-		    System.out.println("Driver Class Not Found, Loader Failure!");  //找不到驱动程序类 ，加载驱动失败
-		}  
-	    try{ 
-	    	Connection con =     
-	    			DriverManager.getConnection(domain.DatabaseInfo.url , domain.DatabaseInfo.username , domain.DatabaseInfo.password ) ; 
-	    
-	    	Statement statement = con.createStatement();
-	    	
-	    	String statementString = "insert into IfThisTime values( " + goalTime + ");" ;
-	    	statement.executeUpdate(statementString);
-	     }
-	     catch(SQLException se){    
-	    	System.out.println("Connection to Database Failed!");    
-	    	se.printStackTrace() ;    
-	     }  
-		return true;
+		dao.impl.ThisDaoImpl t = new dao.impl.ThisDaoImpl();
+		return t.addThis(this);
 	}
 	
 	public boolean removeFromDb() {
 		// todo: call method about Db(in dao) to remove this from Db
-		try{
-			Class.forName("com.mysql.jdbc.Driver");
-		}
-		catch(ClassNotFoundException e){
-			e.printStackTrace();
-			System.out.println("Driver Class Not Found, Loader Failure! ");
-		}
-		try{
-			Connection con =
-					DriverManager.getConnection(domain.DatabaseInfo.url, domain.DatabaseInfo.username, domain.DatabaseInfo.password);
-			Statement statement = con.createStatement();
-			String statementString1 = "select * from IfThisTime where goalTime = " + "\"" + goalTime + "\"";
-			if(statement.executeQuery(statementString1) == null ) return false;
-			
-			String statementString = "delete from IfThisTime where goalTime = " + "\"" + goalTime + "\"";
-			statement.executeUpdate(statementString);
-		}
-		catch(SQLException se){
-			System.out.println("Connection to Database Failed!");
-			se.printStackTrace();
-		}
-		return true;
+		dao.impl.ThisDaoImpl t = new dao.impl.ThisDaoImpl();
+		return t.removeThis(this);
 	}
 	
 	

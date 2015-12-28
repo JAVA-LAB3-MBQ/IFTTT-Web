@@ -14,17 +14,57 @@ public class IfThisListenWeibo extends IfThis{
 	
 	public IfThisListenWeibo() {
 		this.setThisType(IfThis.thisListenWeiboTypeValue);
+<<<<<<< HEAD
+=======
 		this.setThisInfo("Listen Weibo");
+>>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 	}
 	
 	public IfThisListenWeibo(String weiboId, String weiboPwd, String content, String t) {
 		setThisWeiboId(weiboId);
 		setThisWeiboContent(content);
 		setThisTimeLen(t);
+<<<<<<< HEAD
+		this.setThisType(IfThis.thisListenWeiboTypeValue);
+		this.setThisInfo("if send a weibo: receiver-" + thisWeiboId);
+	}
+	public IfThisListenWeibo(String thisId, String weiboId, String content, String t) {
+		setThisId(thisId);
+		setThisWeiboId(weiboId);
+		setThisWeiboContent(content);
+		setThisTimeLen(t);
+		this.setThisType(IfThis.thisListenWeiboTypeValue);
+		this.setThisInfo("if send a weibo: receiver-" + thisWeiboId);
+	}
+	
+	public String getThisWeiboId() {
+		return thisWeiboId;
+	}
+	
+	public void setThisWeiboId(String s) {
+		thisWeiboId = s;
+	}
+	
+	public String getThisWeiboContent() {
+		return thisWeiboContent;
+	}
+	
+	public void setThisWeiboContent(String c) {
+		thisWeiboContent = c;
+	}
+	
+	public String getThisTimeLen() {
+		return thisTimeLen;
+	}
+	
+	public void setThisTimeLen(String l) {
+		thisTimeLen = l;
+=======
 		setThisWeiboPwd(weiboPwd);
 		
 		this.setThisType(IfThis.thisListenWeiboTypeValue);
 		this.setThisInfo("Listen Weibo: id-" + weiboId + ";content-" + content + ";time-" + t);
+>>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 	}
 	
 	public boolean ifHappened() {
@@ -34,54 +74,14 @@ public class IfThisListenWeibo extends IfThis{
 	
 	public boolean add2Db() {
 		// todo: call method about Db(in dao) to insert this to Db
-		try{
-		    Class.forName("com.mysql.jdbc.Driver") ; 
-		}
-		catch(ClassNotFoundException e){
-			e.printStackTrace();
-		    System.out.println("Driver Class Not Found, Loader Failure！");  //找不到驱动程序类 ，加载驱动失败
-		}  
-	    try{ 
-	    	Connection con =     
-	    			DriverManager.getConnection(domain.DatabaseInfo.url , domain.DatabaseInfo.username , domain.DatabaseInfo.password ) ; 
-	    
-	    	Statement statement = con.createStatement();
-	    	
-	    	String statementString = "insert into IfThisListenWeibo values(\"" + thisWeiboId + "\",\"" + thisWeiboContent + "\",\"" + thisTimeLen + "\");" ;
-	    	statement.executeUpdate(statementString);
-	     }
-	     catch(SQLException se){    
-	    	System.out.println("Connection to Database Failed！");    
-	    	se.printStackTrace() ;    
-	     }  
-		return true;
+		dao.impl.ThisDaoImpl t = new dao.impl.ThisDaoImpl();
+		return t.addThis(this);
 	}
 	
 	public boolean removeFromDb() {
 		// todo: call method about Db(in dao) to remove this from Db
-		try{
-		    Class.forName("com.mysql.jdbc.Driver") ; 
-		}
-		catch(ClassNotFoundException e){
-			e.printStackTrace();
-		    System.out.println("Driver Class Not Found, Loader Failure！");  //找不到驱动程序类 ，加载驱动失败
-		}  
-	    try{ 
-	    	Connection con =     
-	    			DriverManager.getConnection(domain.DatabaseInfo.url , domain.DatabaseInfo.username , domain.DatabaseInfo.password ) ; 
-	    
-	    	Statement statement = con.createStatement();
-	    	
-	    	String statementString = "delete "
-	    			+ "from IfThisListenWeibo "
-	    			+ "where thisWeiboId = \"" + thisWeiboId + "\"";
-	    	statement.executeUpdate(statementString);
-	     }
-	     catch(SQLException se){    
-	    	System.out.println("Connection to Database Failed！");    
-	    	se.printStackTrace() ;    
-	     }  
-		return true;
+		dao.impl.ThisDaoImpl t = new dao.impl.ThisDaoImpl();
+		return t.removeThis(this);
 	}
 	
 	public String getThisWeiboId() {
